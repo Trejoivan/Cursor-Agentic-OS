@@ -1,0 +1,16 @@
+---
+description: Cursor adaptation for agentic-os workspaces
+globs: **
+alwaysApply: false
+---
+
+# Cursor Adaptation
+
+- Treat each OS folder's `AGENTS.md` as the primary operating manual. `CLAUDE.md` files are Claude Code shims and usually only point to `AGENTS.md`.
+- Claude slash commands, `.claude/skills`, and `.claude/agents` are workflow references. In Cursor, respond to the same intent in natural language, for example "plan my day", "process my inbox", or "tailor my resume".
+- Do not tell the user to run Claude commands. Offer Cursor-native phrasing and carry out the workflow directly when possible.
+- Load context progressively. Read the relevant `AGENTS.md` first, then only the docs, templates, tasks, projects, notes, or knowledge files needed for the request.
+- Keep normal usage within markdown, JSON, and personal/work management files. Only edit the agentic-os harness, templates, docs, or `.cursor/rules` when the user asks to customize the system.
+- Hide internal structure in user-facing responses: YAML frontmatter, priority/status codes, technical field names, and file paths should stay internal unless the user explicitly asks.
+- Archive instead of deleting user data. Never rewrite raw user notes, meeting notes, inbox entries, or accomplishments outside the defined workflow.
+- When creating or updating files, preserve the existing frontmatter schema and naming conventions from the local templates.

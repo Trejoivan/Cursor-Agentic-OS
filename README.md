@@ -1,11 +1,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/ahmadelswify/agentic-os?style=flat)](https://github.com/ahmadelswify/agentic-os/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# agentic-os: AI-Native Operating Systems Powered by Claude Code
+# agentic-os: AI-Native Operating Systems Powered by Claude Code and Cursor
 
 > Stop managing tools. Start having conversations. Let AI manage the system while you do the work.
 
-A collection of markdown-based operating systems where AI handles the structure, organization, and context so you can focus on what matters. Each OS is self-contained, local-first, and built for [Claude Code](https://claude.com/claude-code).
+A collection of markdown-based operating systems where AI handles the structure, organization, and context so you can focus on what matters. Each OS is self-contained, local-first, and works with [Claude Code](https://claude.com/claude-code) or Cursor.
 
 ## What Is an Agentic OS?
 
@@ -34,7 +34,17 @@ Each OS works independently. Pick one, pick all four, or mix and match.
 
 ## Getting Started
 
-**Prerequisites:** [Claude Code](https://claude.com/claude-code) and Node.js v18+
+**With Cursor:** Open the parent workspace, then work inside one of the OS folders and ask in natural language:
+
+```text
+What should I work on today?
+Process my inbox.
+Tailor my resume for this job description.
+```
+
+See [CURSOR.md](CURSOR.md) for the Cursor-specific setup and command mapping.
+
+**With Claude Code:** [Claude Code](https://claude.com/claude-code) and Node.js v18+
 
 ```bash
 # Clone the collection
