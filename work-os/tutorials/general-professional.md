@@ -85,7 +85,7 @@ Active/
 ```
 You: "What should I work on today?"
 
-Claude: Based on your tasks and goals:
+Cursor: Based on your tasks and goals:
 
 🔴 Urgent:
 - [Deadline today or blocking others]
@@ -115,7 +115,7 @@ Throughout your day, capture everything in BACKLOG.md:
 ```
 You: "Process my backlog"
 
-Claude: [Reads your brain dump]
+Cursor: [Reads your brain dump]
     [Checks your goals and current projects]
     [Creates organized tasks with priorities]
     [Asks clarifying questions if needed]
@@ -126,7 +126,7 @@ Claude: [Reads your brain dump]
 ```
 You: "Weekly review"
 
-Claude: This week you:
+Cursor: This week you:
 
 Accomplished:
 - ✅ [completed tasks]
@@ -182,7 +182,7 @@ Use the [career portfolio guide](../use-cases/career-portfolio/) for:
 
 ## Adapting to Your Role
 
-### Just Tell Claude About Your Work
+### Just Tell Cursor About Your Work
 
 No manual setup required. Just describe what you do:
 
@@ -191,10 +191,10 @@ You: "I'm a [your role]. My main work involves [category 1], [category 2],
      and [category 3]. Urgent things for me are [what's urgent].
      Right now I'm focused on [current priorities]."
 
-Claude: "I'll set up your workspace based on your work..."
+Cursor: "I'll set up your workspace based on your work..."
 ```
 
-Claude will:
+Cursor will:
 1. Create `Active/` folders that match your actual work categories
 2. Set up your GOALS.md with your priorities
 3. Learn what "urgent" means for YOUR role
@@ -212,7 +212,7 @@ Brain dump → Process → Work → Repeat
 ```
 You: "Add to backlog: Q1 budget variance analysis needed for leadership review"
 
-Claude: Created task:
+Cursor: Created task:
 - Marked as important (leadership visibility)
 - Category: reporting
 - Due: End of week (typical review cycle)
@@ -220,7 +220,7 @@ Claude: Created task:
 
 You: "What should I focus on today?"
 
-Claude: Your finance priorities:
+Cursor: Your finance priorities:
 
 Urgent:
 - Finalize Q1 variance analysis (leadership review tomorrow)
@@ -234,7 +234,7 @@ Important:
 ```
 You: "Add to backlog: Need to coordinate performance review cycle, Q1 reviews due in 2 weeks"
 
-Claude: Created project: Q1 Performance Review Cycle
+Cursor: Created project: Q1 Performance Review Cycle
 
 Tasks:
 - Send performance review reminders to managers (urgent — due this week)
@@ -244,7 +244,7 @@ Tasks:
 
 You: "Show project status"
 
-Claude: Q1 Performance Review Cycle:
+Cursor: Q1 Performance Review Cycle:
 - 65% of reviews submitted
 - 5 managers need reminders
 - Calibration meeting scheduled for Friday
@@ -254,7 +254,7 @@ Claude: Q1 Performance Review Cycle:
 ```
 You: "Add to backlog: Feature X feedback from 3 customers, they want Y capability"
 
-Claude: Created task:
+Cursor: Created task:
 - On your radar (customer feedback for roadmap)
 - Category: product-strategy
 - Next action: Document feedback, discuss with eng team
@@ -262,7 +262,7 @@ Claude: Created task:
 
 You: "What's our Q2 roadmap status?"
 
-Claude: Q2 Roadmap Planning:
+Cursor: Q2 Roadmap Planning:
 - Feature prioritization: 80% complete
 - Eng capacity planning: in progress
 - Stakeholder alignment: 2 more reviews needed
@@ -273,7 +273,7 @@ Claude: Q2 Roadmap Planning:
 ```
 You: "Add to backlog: CEO needs brief for board meeting on strategic initiatives, Friday"
 
-Claude: Created task:
+Cursor: Created task:
 - Urgent (CEO + board + this week)
 - Category: executive-support
 - Due: Thursday (day before meeting)
@@ -281,7 +281,7 @@ Claude: Created task:
 
 You: "What prep is needed for this week's meetings?"
 
-Claude: Meeting prep priorities:
+Cursor: Meeting prep priorities:
 
 Urgent:
 - Board meeting brief for CEO (Friday)
@@ -304,7 +304,7 @@ Every professional writes differently — emails, reports, proposals, updates. A
 ```
 You: "Here are some emails and reports I've written — learn my style"
 
-Claude: Analyzed your communication style:
+Cursor: Analyzed your communication style:
 
 Your email patterns:
 - You get to the point fast (no "I hope this finds you well")
@@ -331,7 +331,7 @@ I'll match this style for all written communications.
 ```
 You: "Draft an email to my manager about the project delay"
 
-Claude: Here's a draft in your style:
+Cursor: Here's a draft in your style:
 
 Subject: Q1 Project Update — 2-Week Delay
 
@@ -363,7 +363,7 @@ Matches your style:
 ```
 You: "Actually I wouldn't say 'Hey' to my manager — too casual"
 
-Claude: Got it — noted that you use "Hi [Name]" for managers,
+Cursor: Got it — noted that you use "Hi [Name]" for managers,
 save "Hey" for peers. I'll adjust for audience going forward.
 ```
 

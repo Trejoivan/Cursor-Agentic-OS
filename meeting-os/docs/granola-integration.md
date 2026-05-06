@@ -8,10 +8,10 @@
 
 ### Prerequisites
 1. A Granola account with active meeting recording
-2. Granola's MCP (Model Context Protocol) server configured in Claude Code
+2. Granola's MCP (Model Context Protocol) server configured in Cursor
 
 ### Configuring the MCP Server
-Add Granola to your Claude Code MCP settings. Once configured, you'll have access to:
+Add Granola to your Cursor MCP settings (Settings → MCP). Once configured, you'll have access to:
 
 - `query_granola_meetings` — Search meetings by topic, person, or content
 - `list_meetings` — List meetings within a date range
@@ -24,39 +24,39 @@ Add Granola to your Claude Code MCP settings. Once configured, you'll have acces
 ```
 You: Pull the transcript from my meeting with Sarah today
 
-AI: [Fetches transcript from Granola]
-    Processing transcript...
+Cursor: [Fetches transcript from Granola]
+        Processing transcript...
 
-    Meeting summary:
-    - [key points]
+        Meeting summary:
+        - [key points]
 
-    Decisions:
-    - [decisions]
+        Decisions:
+        - [decisions]
 
-    Action items:
-    - [items]
+        Action items:
+        - [items]
 
-    Saved to: Meetings/2026-02-15-sarah-sync.md
+        Saved to: Meetings/2026-02-15-sarah-sync.md
 ```
 
 ### Searching Past Meetings
 ```
 You: What did we discuss about the launch timeline?
 
-AI: [Queries Granola for "launch timeline"]
-    Found in 3 meetings:
-    - Feb 15: Moved to March 15 (product team sync)
-    - Feb 8: Originally set for March 1 (planning session)
-    - Jan 25: First discussion of Q1 launch (kickoff)
+Cursor: [Queries Granola for "launch timeline"]
+        Found in 3 meetings:
+        - Feb 15: Moved to March 15 (product team sync)
+        - Feb 8: Originally set for March 1 (planning session)
+        - Jan 25: First discussion of Q1 launch (kickoff)
 ```
 
 ### Getting Exact Quotes
 ```
 You: What exactly did Sarah say about the budget?
 
-AI: [Pulls transcript for the relevant meeting]
-    Sarah said: "[exact quote from transcript]"
-    Context: This was during the budget review section, approximately 15 minutes in.
+Cursor: [Pulls transcript for the relevant meeting]
+        Sarah said: "[exact quote from transcript]"
+        Context: This was during the budget review section, approximately 15 minutes in.
 ```
 
 ## Best Practices

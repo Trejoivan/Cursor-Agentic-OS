@@ -44,18 +44,18 @@ Open `GOALS.md` and add your operations objectives:
 - Reporting and analytics
 ```
 
-### 2. Tell Claude About Your Work
+### 2. Tell Cursor About Your Work
 
-Just describe what you do. Claude will create your folder structure automatically.
+Just describe what you do. Cursor will create your folder structure automatically.
 
 ```
 You: "I'm an ops manager. I handle vendor contracts, process improvements,
      incident response, and weekly reporting to leadership."
 
-Claude: "I'll set up your workspace. Creating folders for your operations work..."
+Cursor: "I'll set up your workspace. Creating folders for your operations work..."
 ```
 
-Claude creates a structure tailored to YOUR operations:
+Cursor creates a structure tailored to YOUR operations:
 ```
 Active/
 ├── processes/      # Improvements, documentation, SOPs
@@ -76,7 +76,7 @@ Active/
 ```
 You: "What should I work on today?"
 
-Claude: Here's your focus for today:
+Cursor: Here's your focus for today:
 
 Urgent:
 - Resolve shipping delay incident (customers impacted)
@@ -107,7 +107,7 @@ Brain dump as issues arise:
 ```
 You: "Process my backlog"
 
-Claude: Created 4 items:
+Cursor: Created 4 items:
 
 Vendor Issues:
 - Vendor Y SLA violation pattern (urgent — 3rd miss) → Active/vendors/
@@ -134,7 +134,7 @@ Track issues from report to resolution.
 You: "Major incident: Shipping system down, orders not processing,
       started 2 hours ago"
 
-Claude: Created incident: Shipping System Outage
+Cursor: Created incident: Shipping System Outage
 
 Severity: Critical (customer-impacting)
 Started: 2 hours ago
@@ -158,7 +158,7 @@ I'll track timeline and resolution. What's the current status?
 ```
 You: "Shipping system back up, root cause was database connection pool exhaustion"
 
-Claude: Updated incident: Shipping System Outage
+Cursor: Updated incident: Shipping System Outage
 
 Resolution:
 - Duration: 3.5 hours
@@ -182,7 +182,7 @@ Ready to draft the post-mortem?
 ```
 You: "Show me incidents this month"
 
-Claude: January 2026 Incidents:
+Cursor: January 2026 Incidents:
 
 Critical (1):
 - Shipping system outage (Jan 15) — Resolved, 3.5 hours
@@ -213,7 +213,7 @@ Track contracts, performance, and relationships.
 You: "Vendor X contract renews in 60 days, need to evaluate performance
       and negotiate terms"
 
-Claude: Created: Vendor X Contract Renewal
+Cursor: Created: Vendor X Contract Renewal
 
 Timeline (60 days to renewal):
 - Week 1-2: Performance review
@@ -240,7 +240,7 @@ Want me to pull their performance data?
 ```
 You: "Vendor Y missed their SLA again, third time this month"
 
-Claude: Logged SLA violation: Vendor Y
+Cursor: Logged SLA violation: Vendor Y
 
 This month's violations: 3
 - Jan 5: Late delivery (2 days)
@@ -265,7 +265,7 @@ This triggers contract review provisions. Want me to draft the formal notice?
 ```
 You: "Show me all vendor performance this quarter"
 
-Claude: Q1 2026 Vendor Scorecard:
+Cursor: Q1 2026 Vendor Scorecard:
 
 Top Performers:
 - Vendor A: 98% SLA compliance, no issues
@@ -294,7 +294,7 @@ Track initiatives from identification to implementation.
 You: "Starting a process improvement project to reduce order fulfillment
       time from 48 hours to 24 hours"
 
-Claude: Created project: Order Fulfillment Optimization
+Cursor: Created project: Order Fulfillment Optimization
 
 Goal: Reduce fulfillment time 48h → 24h (50% improvement)
 
@@ -335,7 +335,7 @@ Want to start with process mapping?
 ```
 You: "What's the status of the fulfillment optimization project?"
 
-Claude: Order Fulfillment Optimization:
+Cursor: Order Fulfillment Optimization:
 
 Progress: 45% complete (Phase 2: Analysis)
 
@@ -370,7 +370,7 @@ Stay on top of performance obligations.
 ```
 You: "Show me our SLA compliance this month"
 
-Claude: January 2026 SLA Compliance:
+Cursor: January 2026 SLA Compliance:
 
 Overall: 94.2% (target: 95%)
 
@@ -418,7 +418,7 @@ work-os helps you prepare stakeholder updates:
 ```
 You: "Help me prepare the weekly ops update for leadership"
 
-Claude: Weekly Operations Update (Jan 15-19):
+Cursor: Weekly Operations Update (Jan 15-19):
 
 Incidents:
 - 1 critical (resolved): Shipping system outage, 3.5 hours
@@ -460,7 +460,7 @@ AI learns how you write reports, updates, and stakeholder communications.
 ```
 You: "Here are my last few weekly updates — learn my reporting style"
 
-Claude: Analyzed your ops communication style:
+Cursor: Analyzed your ops communication style:
 
 Your report structure:
 - Lead with metrics, not narrative
@@ -487,7 +487,7 @@ I'll match this style for all reports. Want me to draft this week's update?
 ```
 You: "Draft the incident summary section for leadership"
 
-Claude: Here's the incident summary in your style:
+Cursor: Here's the incident summary in your style:
 
 **Incidents (Jan 15-19)**
 | Severity | Count | Resolved | Avg Resolution |
@@ -514,7 +514,7 @@ Matches your style:
 ```
 You: "Draft an escalation email to the VP about Vendor Y"
 
-Claude: I'll use your escalation tone (direct but professional):
+Cursor: I'll use your escalation tone (direct but professional):
 
 Subject: Vendor Y SLA Violations — Recommendation to Review Contract
 

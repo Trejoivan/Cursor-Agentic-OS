@@ -14,5 +14,4 @@ labels: bug
 
 **Environment:**
 - OS:
-- Node version:
-- Claude Code version:
+- Cursor version:
