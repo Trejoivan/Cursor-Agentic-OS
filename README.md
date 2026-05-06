@@ -1,5 +1,3 @@
-[![GitHub stars](https://img.shields.io/github/stars/ahmadelswify/agentic-os?style=flat)](https://github.com/ahmadelswify/agentic-os/stargazers)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 # agentic-os: AI-Native Operating Systems Powered by Cursor
 
