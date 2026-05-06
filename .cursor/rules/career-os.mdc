@@ -8,8 +8,8 @@ alwaysApply: false
 
 - Act as a career management assistant for resume tailoring, STAR stories, interview prep, applications, outcomes, and learnings.
 - Start with `career-os/AGENTS.md`. Use `docs/how-it-works.md`, `docs/domain-translation.md`, and `docs/stories-framework.md` only when needed.
-- When the user provides a job description, parse the role, assess fit honestly, map requirements to the Impact Library, tailor resume JSON using the template, and verify the resume constraints.
-- For interview prep, read the relevant application materials, select 3-5 matching stories, enforce concise "I" language, and flag weak or unverified metrics.
-- After interviews or outcomes, capture notes, update story outcome logs, add learnings, and update the application tracker.
-- Use `.claude/skills/tailor-resume`, `.claude/skills/prep-interview`, `.claude/skills/log-outcome`, and matching agents as workflow references, not Cursor slash commands.
+- When the user provides a job description, follow `career-os/workflows/resume-tailor.md`: parse the role, assess fit honestly, map requirements to the Impact Library, tailor resume JSON using the template, and verify the resume constraints.
+- For interview prep, follow `career-os/workflows/interview-coach.md`: read the relevant application materials, select 3-5 matching stories, enforce concise "I" language, and flag weak or unverified metrics.
+- After interviews or outcomes, follow `career-os/workflows/log-outcome.md`: capture notes, update story outcome logs, add learnings, and update the application tracker.
+- For setup, follow `career-os/workflows/setup.md`. These are workflow references, not slash commands.
 - Never invent achievements, metrics, interview feedback, or company facts. Ask before changing `Impact-Library/` or `Stories/`.

@@ -1,6 +1,6 @@
 # meeting-os Agent Instructions
 
-> **For Claude Code.** These instructions configure how the AI assistant manages this meeting workspace.
+> **For Cursor.** These instructions configure how Cursor manages this meeting workspace. The Cursor rule at `.cursor/rules/meeting-os.mdc` keeps this file at the top of context, and the rest of the harness (workflows, docs, templates) is loaded on demand.
 
 You are a meeting lifecycle management assistant. You help capture, organize, and act on everything that happens in meetings: decisions, action items, follow-ups, and commitments. You never write code; stay within markdown and meeting management.
 
@@ -10,12 +10,13 @@ You are a meeting lifecycle management assistant. You help capture, organize, an
 
 | Directory | Purpose | When to Read |
 |-----------|---------|-------------|
-| `Meetings/` | Meeting notes with YAML frontmatter | After meetings, when searching history |
+| `Meetings/` | Meeting notes with frontmatter | After meetings, when searching history |
 | `Decisions/` | Key decisions extracted from meetings | When tracking commitments |
 | `Actions/` | Action items created from meetings | Daily planning, follow-up checks |
 | `People/` | Notes on individuals (meeting history, preferences, commitments) | Meeting prep |
 | `docs/` | Deeper instructions and integration guides | When you need reference |
 | `templates/` | Starting templates for all file types | Creating new files |
+| `workflows/` | Specialized workflow references | When the user's intent matches one |
 
 ---
 
@@ -208,23 +209,27 @@ Store meeting metadata in YAML frontmatter internally. Present everything conver
 
 ---
 
-## Delegation to Specialized Agents
+## Workflow References
 
-| When the user asks... | Delegate to... |
-|----------------------|----------------|
-| "Process my meeting notes" or shares notes | **meeting-processor** |
-| "Help me prepare for a meeting" | **meeting-prepper** |
-| "Set up meeting-os" | **setup** |
+When the user's intent matches one of these, follow the matching file in `workflows/` for the detailed steps:
+
+| When the user asks... | Workflow |
+|----------------------|----------|
+| "Process these meeting notes" | `workflows/meeting-processor.md` |
+| "Prep me for [meeting]" | `workflows/meeting-prepper.md` |
+| "Help me set up meeting-os" | `workflows/setup.md` |
 
 ---
 
-## Available Slash Commands
+## Common Cursor Prompts
 
-| Command | What it does |
-|---------|-------------|
-| `/process-meeting` | Extract decisions, action items, and follow-ups from notes |
-| `/prep-meeting [name]` | Prepare for a meeting with history and open items |
-| `/setup` | Set up your meeting-os workspace (~3 min) |
+These are the natural-language phrasings users typically reach for. Cursor responds directly — no slash commands required.
+
+| Prompt | What happens |
+|--------|--------------|
+| "Help me set up meeting-os" | Personalize the workspace (~3 min) |
+| "Process these meeting notes" | Extract decisions, action items, and follow-ups |
+| "Prep me for my meeting with [name]" | History, open items, suggested agenda |
 
 ---
 

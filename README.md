@@ -1,15 +1,15 @@
 [![GitHub stars](https://img.shields.io/github/stars/ahmadelswify/agentic-os?style=flat)](https://github.com/ahmadelswify/agentic-os/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# agentic-os: AI-Native Operating Systems Powered by Claude Code and Cursor
+# agentic-os: AI-Native Operating Systems Powered by Cursor
 
 > Stop managing tools. Start having conversations. Let AI manage the system while you do the work.
 
-A collection of markdown-based operating systems where AI handles the structure, organization, and context so you can focus on what matters. Each OS is self-contained, local-first, and works with [Claude Code](https://claude.com/claude-code) or Cursor.
+A collection of markdown-based operating systems where AI handles the structure, organization, and context so you can focus on what matters. Each OS is self-contained, local-first, and runs entirely inside [Cursor](https://cursor.com) using `AGENTS.md` and project rules.
 
 ## What Is an Agentic OS?
 
-An agentic OS is a folder of markdown files with a set of instructions that turn Claude Code into a specialized assistant. No databases, no SaaS, no vendor lock-in. Your data lives as plain text on your machine. The AI reads your instructions, understands your context, and manages the system through conversation.
+An agentic OS is a folder of markdown files plus a set of Cursor rules and workflows that turn Cursor into a specialized assistant. No databases, no SaaS, no vendor lock-in. Your data lives as plain text on your machine. Cursor reads your instructions, understands your context, and manages the system through conversation.
 
 You talk. It organizes. You keep working.
 
@@ -27,43 +27,38 @@ Each OS works independently. Pick one, pick all four, or mix and match.
 ## Philosophy
 
 - **Local-first.** Everything is markdown files on your machine. Back up to GitHub if you want, but nothing leaves your computer by default.
-- **Conversational.** No forms, no fields, no clicks. You talk to AI in natural language and it handles the rest.
-- **Goal-driven.** Every task, note, and action connects back to what you're trying to accomplish. The AI keeps you aligned.
-- **No vendor lock-in.** It's just markdown. If you stop using Claude Code tomorrow, your files are still useful, readable text.
-- **Progressive context.** The AI loads only what it needs, when it needs it. Small instruction files point to deeper docs on demand.
+- **Conversational.** No forms, no fields, no clicks. You talk to Cursor in natural language and it handles the rest.
+- **Goal-driven.** Every task, note, and action connects back to what you're trying to accomplish. Cursor keeps you aligned.
+- **No vendor lock-in.** It's just markdown. If you stop using Cursor tomorrow, your files are still useful, readable text.
+- **Progressive context.** Cursor loads only what it needs, when it needs it. Small instruction files (`AGENTS.md`) point to deeper docs and workflows on demand.
 
 ## Getting Started
 
-**With Cursor:** Open the parent workspace, then work inside one of the OS folders and ask in natural language:
+1. Install [Cursor](https://cursor.com) if you don't already have it.
 
-```text
-What should I work on today?
-Process my inbox.
-Tailor my resume for this job description.
-```
+2. Clone the collection:
 
-See [CURSOR.md](CURSOR.md) for the Cursor-specific setup and command mapping.
+   ```bash
+   git clone https://github.com/ahmadelswify/agentic-os.git
+   ```
 
-**With Claude Code:** [Claude Code](https://claude.com/claude-code) and Node.js v18+
+3. Open the cloned `agentic-os/` folder (or its parent) in Cursor. The Cursor rules in `agentic-os/.cursor/rules/` attach automatically.
 
-```bash
-# Clone the collection
-git clone https://github.com/ahmadelswify/agentic-os.git
+4. Pick an OS, open a file inside it, and start a chat:
 
-# Pick an OS and navigate into it
-cd agentic-os/work-os    # or career-os, personal-os, meeting-os
+   ```text
+   What should I work on today?
+   Process my inbox.
+   Tailor my resume for this job description.
+   ```
 
-# Launch Claude Code
-claude
-```
-
-Each OS has its own README with specific setup instructions. Claude Code automatically reads the `CLAUDE.md` file in whatever directory you launch it from.
+See [CURSOR.md](CURSOR.md) for the full setup walkthrough and the natural-language prompts each OS responds to.
 
 ## Contributing
 
 Found this helpful? Have ideas? Open an issue or PR. Each OS accepts contributions independently.
 
-If you build your own agentic OS and want to add it to the collection, open a PR with a new subdirectory following the same structure: `README.md`, `CLAUDE.md`, `AGENTS.md`, and supporting files.
+If you build your own agentic OS and want to add it to the collection, open a PR with a new subdirectory following the same structure: `README.md`, `AGENTS.md`, `workflows/`, and supporting files.
 
 ## License
 

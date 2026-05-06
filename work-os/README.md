@@ -1,40 +1,37 @@
-> Part of [agentic-os](https://github.com/ahmadelswify/agentic-os), a collection of AI-native operating systems powered by Claude Code.
-
 # work-os: AI-Native Productivity for Any Professional
 
 > Brain dump naturally. AI organizes everything. You keep working.
 
-A terminal-based system where you talk to AI instead of filling out forms. No apps, no context-switching. Built for [Claude Code](https://claude.com/claude-code).
+A Cursor-driven productivity workspace where you talk to the AI instead of filling out forms. Open the workspace, ask in natural language, and Cursor handles the structure.
 
 ## How It Works
 
 1. **Brain dump** into BACKLOG.md throughout your day
-2. **Say "process backlog"** to your AI assistant
-3. **AI organizes everything** into structured tasks, projects, and priorities
+2. **Say "process backlog"** to Cursor
+3. **Cursor organizes everything** into structured tasks, projects, and priorities
 4. **Work naturally** by asking "what should I work on today?"
 
 No manual categorization. No form-filling. No app-switching.
 
 ## Quick Start
 
-Requires [Claude Code](https://claude.com/claude-code) and Node.js v18+. See [Requirements](#requirements) for setup options.
+Requires [Cursor](https://cursor.com).
 
-```bash
-# Clone the repository
-git clone https://github.com/ahmadelswify/agentic-os.git
+1. Clone the repo and open it in Cursor.
 
-# Navigate into work-os
-cd agentic-os/work-os
+   ```bash
+   git clone https://github.com/ahmadelswify/agentic-os.git
+   ```
 
-# Launch Claude Code
-claude
-```
+2. In Cursor, point a chat at `agentic-os/work-os/` and say:
 
-Then say: `"Help me set up work-os"`
+   ```text
+   Help me set up work-os
+   ```
 
-Claude Code will ask about your role, create your personalized structure, and get you started.
+Cursor reads `AGENTS.md`, asks about your role, builds your personalized structure, and gets you started.
 
-**New to terminals?** See [SETUP.md](SETUP.md) for a step-by-step visual guide.
+**New to Cursor?** See [SETUP.md](SETUP.md) for a step-by-step guide.
 
 ## Your Daily Workflow
 
@@ -42,7 +39,7 @@ Claude Code will ask about your role, create your personalized structure, and ge
 ```
 "What should I work on today?"
 ```
-AI reviews your tasks and goals to suggest priorities.
+Cursor reviews your tasks and goals to suggest priorities.
 
 **During Work:**
 ```
@@ -55,13 +52,13 @@ AI reviews your tasks and goals to suggest priorities.
 ```
 "Process my backlog"
 ```
-AI organizes everything into tasks with priorities and context.
+Cursor organizes everything into tasks with priorities and context.
 
 **Weekly:**
 ```
-"Weekly review"
+"Run my weekly review"
 ```
-AI helps you reflect, track progress, and plan ahead.
+Cursor helps you reflect, track progress, and plan ahead.
 
 ## How Is This Different?
 
@@ -92,7 +89,7 @@ Your structure adapts to your role. Here's the base:
 
 ```
 work-os/
-├── AGENTS.md            # AI instructions (~80 lines — the map)
+├── AGENTS.md            # AI instructions (the map)
 ├── BACKLOG.md           # Your brain dump inbox
 ├── GOALS.md             # Your objectives
 ├── docs/                # The harness — agent instructions, workflows,
@@ -102,6 +99,7 @@ work-os/
 │   ├── workflows/
 │   ├── validation/
 │   └── garbage-collection/
+├── workflows/           # Specialized workflow references for Cursor
 ├── Active/              # Current work (organized by YOUR categories)
 ├── Projects/            # Multi-task initiatives
 ├── Career/              # Professional development
@@ -109,7 +107,7 @@ work-os/
 └── Archive/             # Completed work
 ```
 
-The `Active/` folder is personalized during setup based on your role. The `docs/` folder is the harness — structured instructions the AI reads on-demand instead of loading everything at once. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how all pieces connect.
+The `Active/` folder is personalized during setup based on your role. The `docs/` folder is the harness — structured instructions Cursor reads on-demand instead of loading everything at once. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how all pieces connect.
 
 ## See It in Action
 
@@ -119,32 +117,32 @@ You: "Add to backlog: Client wants to discuss expanding the project scope,
 
 You: "Process backlog"
 
-AI: Created task: 'Prep talking points for client scope discussion'
-    - Marked as important (meeting Thursday)
-    - Category: client-work
-    - Connected to: Q1 expansion goal
+Cursor: Created task: 'Prep talking points for client scope discussion'
+        - Marked as important (meeting Thursday)
+        - Category: client-work
+        - Connected to: Q1 expansion goal
 
 You: "What should I work on today?"
 
-AI: Here's your focus for today:
+Cursor: Here's your focus for today:
 
-    Urgent:
-    • Prep talking points for client scope discussion (Thursday meeting)
-    • Finish the draft proposal (client waiting)
+        Urgent:
+        • Prep talking points for client scope discussion (Thursday meeting)
+        • Finish the draft proposal (client waiting)
 
-    If you have time:
-    • Review last month's project metrics
+        If you have time:
+        • Review last month's project metrics
 
-    You're in good shape — two things need attention today.
+        You're in good shape — two things need attention today.
 
 You: "Done with the client prep"
 
-AI: Nice! Marked as done.
-    That meeting could be portfolio-worthy if the scope expands —
-    want me to track it?
+Cursor: Nice! Marked as done.
+        That meeting could be portfolio-worthy if the scope expands —
+        want me to track it?
 ```
 
-Notice what happened: you brain dumped one sentence, AI structured it into a task connected to your goals, then proactively offered to track it as a career accomplishment. That's the difference between a to-do list and a system that works for you.
+Notice what happened: you brain dumped one sentence, Cursor structured it into a task connected to your goals, then proactively offered to track it as a career accomplishment. That's the difference between a to-do list and a system that works for you.
 
 ## Real-World Use Cases
 
@@ -154,37 +152,36 @@ Notice what happened: you brain dumped one sentence, AI structured it into a tas
 - **[Career Portfolio](use-cases/career-portfolio)** — Accomplishment logs, project summaries, interview stories
 - **[Meeting Notes](use-cases/meeting-notes)** — Process meetings into action items and decisions
 
-## Quick Commands
+## Common Cursor Prompts
 
-work-os includes slash commands for common workflows:
+work-os responds to natural language — there are no slash commands required:
 
-| Command | What it does |
-|---------|-------------|
-| `/setup` | Personalize your workspace (~5 min) |
-| `/plan-day` | Morning planning: suggests 2-4 focus items |
-| `/process-backlog` | Turn brain dumps into organized tasks |
-| `/weekly-review` | Reflect on the week: wins, progress, what's next |
-| `/add-task [description]` | Quickly capture a task |
-| `/prep-meeting [name]` | Prepare for a meeting with context |
-| `/log-accomplishment [description]` | Record a win for your career tracker |
-| `/status-report [project]` | Generate a stakeholder-ready project update |
+| Prompt | What happens |
+|--------|--------------|
+| "Help me set up work-os" | Personalize your workspace (~5 min) |
+| "What should I work on today?" | Morning planning: 2-4 focus items |
+| "Process my backlog" | Turn brain dumps into organized tasks |
+| "Run my weekly review" | Reflect on the week: wins, progress, what's next |
+| "Add a task: …" | Quickly capture a task |
+| "Prep me for my meeting with [name]" | Gather context and talking points |
+| "Log this accomplishment: …" | Record a win for your career tracker |
+| "Generate a status report for [project]" | Stakeholder-ready project update |
+
+The full list of workflow references lives in `workflows/`.
 
 ## Requirements
 
-- **[Claude Code](https://claude.com/claude-code)** — Anthropic's terminal-based AI tool
-  - Via [Claude Max subscription](https://claude.com) (includes API access), or
-  - Via [Anthropic API key](https://console.anthropic.com)
-- **Node.js v18+** — Required to run Claude Code
+- **[Cursor](https://cursor.com)** — AI-native code editor that reads `AGENTS.md` and `.cursor/rules` automatically.
 
 See [SETUP.md](SETUP.md) for detailed installation instructions.
 
 ## FAQ
 
-**Q: Do I need Claude Code specifically?**
-A: Yes. work-os is built for Claude Code's terminal-based file operations and workflows.
+**Q: Do I need Cursor specifically?**
+A: This template is configured for Cursor's `AGENTS.md` + `.cursor/rules` workflow. Other AI editors that respect those conventions will mostly work, but Cursor is the supported path.
 
 **Q: How is this different from Notion/Asana/Jira?**
-A: Those require manual input and context-switching. work-os is conversational. You brain dump, AI organizes. You never leave your terminal.
+A: Those require manual input and context-switching. work-os is conversational. You brain dump, Cursor organizes. You never leave the editor.
 
 **Q: Will my data stay private?**
 A: Yes. Everything stays as local files on your computer. Nothing is uploaded unless you choose to back up to GitHub.

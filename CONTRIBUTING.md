@@ -5,16 +5,16 @@ Thanks for your interest in contributing.
 ## Getting Started
 
 1. Fork the repo
-2. Clone: `git clone https://github.com/YOUR-USERNAME/agentic-os.git`
-3. Pick an OS and navigate into it: `cd work-os`
-4. Launch Claude Code: `claude`
-5. Read the AGENTS.md to understand how the system works
+2. Clone your fork: `git clone https://github.com/YOUR-USERNAME/agentic-os.git`
+3. Open the cloned `agentic-os/` folder in [Cursor](https://cursor.com) so the project rules in `.cursor/rules/` attach automatically.
+4. Pick an OS subdirectory (`work-os`, `career-os`, `personal-os`, `meeting-os`) and read its `AGENTS.md` to understand how the system works.
 
 ## What You Can Contribute
 
 - **Templates:** New task, project, or workflow templates
-- **Tutorials:** Role-specific guides (see work-os/tutorials/)
-- **Use Cases:** Real-world examples (see work-os/use-cases/)
+- **Workflows:** Additions to `workflows/` for new natural-language intents
+- **Tutorials:** Role-specific guides (see `work-os/tutorials/`)
+- **Use Cases:** Real-world examples (see `work-os/use-cases/`)
 - **Bug Fixes:** Issues labeled `bug`
 - **Documentation:** Improvements to READMEs, docs, or examples
 
@@ -28,4 +28,4 @@ Thanks for your interest in contributing.
 
 - This is a markdown-only system. No code.
 - Follow existing patterns in the OS you're contributing to.
-- Read CLAUDE.md and AGENTS.md before making changes.
+- Read `AGENTS.md` and the relevant Cursor rule (`.cursor/rules/<os>.mdc`) before making changes.

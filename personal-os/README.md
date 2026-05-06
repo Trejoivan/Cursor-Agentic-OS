@@ -1,16 +1,14 @@
-> Part of [agentic-os](https://github.com/ahmadelswify/agentic-os), a collection of AI-native operating systems powered by Claude Code.
-
 # personal-os: Manage Your Whole Life with AI
 
 > Goals, relationships, health, projects, finances. One system, one conversation.
 
-A life management system that ties every task to a goal, tracks what matters across all areas of your life, and keeps you focused on meaningful progress. Built for [Claude Code](https://claude.com/claude-code).
+A Cursor-driven life management workspace that ties every task to a goal, tracks what matters across all areas of your life, and keeps you focused on meaningful progress.
 
 ## How It Works
 
 1. **Define your goals** across all life areas (career, relationships, health, projects, finances)
 2. **Capture tasks** naturally through conversation or brain dumps
-3. **AI organizes everything** into structured tasks linked to your goals
+3. **Cursor organizes everything** into structured tasks linked to your goals
 4. **Ask "What should I work on today?"** and get focused, goal-aligned suggestions
 5. **Weekly reviews** surface stale tasks, goal drift, and blind spots
 
@@ -22,14 +20,13 @@ If you need professional task management specifically, see [work-os](../work-os/
 
 ## Quick Start
 
-```bash
-cd agentic-os/personal-os
-claude
+Open the workspace in [Cursor](https://cursor.com), point a chat at `agentic-os/personal-os/`, and say:
+
+```text
+Help me set up personal-os
 ```
 
-Then say: `"Help me set up personal-os"`
-
-Claude will walk you through:
+Cursor will walk you through:
 1. Defining your life goals and priorities
 2. Creating your first tasks across life areas
 3. Setting up your Knowledge base for people, projects, and reference material
@@ -38,9 +35,9 @@ Claude will walk you through:
 
 ```
 personal-os/
-├── CLAUDE.md                    # Points to AGENTS.md
 ├── AGENTS.md                    # Life management agent instructions
 ├── GOALS-template.md            # Starter goals file
+├── workflows/                   # Specialized workflow references for Cursor
 ├── templates/
 │   ├── task-template.md         # Task with YAML frontmatter
 │   ├── knowledge-template.md    # Knowledge brief template
@@ -59,32 +56,32 @@ personal-os/
 ```
 You: What should I work on today?
 
-AI: Here's your focus for today:
+Cursor: Here's your focus for today:
 
-    1. Follow up with contractor about kitchen estimate (P0, due today)
-    2. Prepare for tomorrow's meeting with financial advisor (P1)
-    3. 30-min workout (recurring, health goal)
+        1. Follow up with contractor about kitchen estimate (urgent, due today)
+        2. Prepare for tomorrow's meeting with financial advisor (important)
+        3. 30-min workout (recurring, health goal)
 
-    You have 2 tasks that are stale (no update in 14+ days). Want to review them?
+        You have 2 tasks that are stale (no update in 14+ days). Want to review them?
 ```
 
 ### Brain Dump Processing
 ```
 You: Process my inbox
 
-AI: Reading INBOX.md...
+Cursor: Reading INBOX.md...
 
-    Created 5 tasks:
-    • "Schedule dentist appointment" → admin (P1)
-    • "Research flights for July trip" → admin (P2)
-    • "Call Mom about Eid plans" → relationships (P0, time-sensitive)
-    • "Review investment portfolio" → admin (P1)
-    • "Draft goals for Q2" → personal-development (P1)
+        Created 5 tasks:
+        • "Schedule dentist appointment" → admin (important)
+        • "Research flights for July trip" → admin (on your radar)
+        • "Call Mom about Eid plans" → relationships (urgent, time-sensitive)
+        • "Review investment portfolio" → admin (important)
+        • "Draft goals for Q2" → personal-development (important)
 
-    Questions:
-    • "Research flights" — do you have dates in mind? That affects priority.
+        Questions:
+        • "Research flights" — do you have dates in mind? That affects priority.
 
-    INBOX.md cleared!
+        INBOX.md cleared!
 ```
 
 ## Life Categories
@@ -115,19 +112,21 @@ personal-os organizes tasks across 12+ areas of life:
 | **P2** | Scheduled | Has a date |
 | **P3** | Someday/maybe | No rush |
 
-## Quick Commands
+## Common Cursor Prompts
 
-| Command | What it does |
-|---------|-------------|
-| `/setup` | Set up your personal-os workspace (~5 min) |
-| `/plan-day` | Plan your day across all life areas |
-| `/process-inbox` | Turn brain dumps into organized, goal-linked tasks |
-| `/weekly-review` | Reflect on your week across all life areas |
-| `/add-task [description]` | Quickly capture a task |
+personal-os responds to natural language — there are no slash commands required:
+
+| Prompt | What happens |
+|--------|--------------|
+| "Help me set up personal-os" | Personalize your workspace (~5 min) |
+| "What should I work on today?" | Plan your day across all life areas |
+| "Process my inbox" | Turn brain dumps into goal-linked tasks |
+| "Run my weekly review" | Reflect across all life areas |
+| "Add a task: …" | Capture a task from natural language |
 
 ## Requirements
 
-- [Claude Code](https://claude.com/claude-code) and Node.js v18+
+- [Cursor](https://cursor.com)
 
 ## License
 

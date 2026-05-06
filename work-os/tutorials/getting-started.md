@@ -1,18 +1,18 @@
 # Getting Started with work-os
 
-A 15-minute guide to setting up your AI-native work management system.
+A 15-minute guide to setting up your AI-native work management system inside Cursor.
 
 ## What You'll Achieve
 
 By the end of this guide:
-- ✅ work-os set up and ready to use
-- ✅ Claude Code configured to help you
-- ✅ First tasks captured and organized
-- ✅ Daily workflow established
+- work-os set up and ready to use
+- Cursor configured to help you
+- First tasks captured and organized
+- Daily workflow established
 
 ## Prerequisites
 
-- **Claude Code**: Required (see [SETUP.md](../SETUP.md) for installation)
+- **[Cursor](https://cursor.com)**: Required (see [SETUP.md](../SETUP.md) for installation)
 - **10-15 minutes**: One-time setup
 - **Your work brain**: List of current tasks/projects
 
@@ -22,25 +22,19 @@ By the end of this guide:
 1. Fork this repository
 2. Clone to your local machine:
 ```bash
-git clone https://github.com/ahmadelswify/agentic-os/work-os.git
+git clone https://github.com/ahmadelswify/agentic-os.git
 cd agentic-os/work-os
 ```
 
 ### Option B: Download
 1. Download this repository as ZIP
 2. Extract to your preferred location
-3. Rename folder to `work-os`
 
-## Step 2: Launch Claude Code (2 minutes)
+## Step 2: Open the Workspace in Cursor (2 minutes)
 
-Navigate to your work-os directory and start Claude Code:
+In Cursor, choose **File → Open Folder** and select the cloned `agentic-os/` folder. Cursor will automatically pick up the project rules in `.cursor/rules/` and the `AGENTS.md` for whichever OS you're working in.
 
-```bash
-cd agentic-os/work-os
-claude
-```
-
-Claude Code will automatically detect the `CLAUDE.md` file and load the work-os instructions from `AGENTS.md`.
+Open any file inside `agentic-os/work-os/` (for example `AGENTS.md`) so the work-os rule attaches to your chat, then start a fresh chat.
 
 ## Step 3: Configure Your Goals (5 minutes)
 
@@ -130,13 +124,13 @@ Open `BACKLOG.md` and dump everything on your mind:
 
 ## Step 5: Process Your Backlog (5 minutes)
 
-Now the magic happens. Tell Claude:
+Now the magic happens. Tell Cursor:
 
 ```
 "Process my backlog"
 ```
 
-### What Claude Will Do:
+### What Cursor Will Do:
 
 1. **Read your backlog** and understand each item
 2. **Check your goals** to see how items align
@@ -148,34 +142,34 @@ Now the magic happens. Tell Claude:
 4. **Ask clarifying questions** if something is unclear
 5. **Clear your backlog** once processed
 
-### Example AI Response:
+### Example Cursor Response:
 ```
-AI: I've processed your backlog and created 10 tasks:
+Cursor: I've processed your backlog and created 10 tasks:
 
 Urgent (this week):
-- Prepare for Customer X meeting (tomorrow) → Active/meetings/
-- Follow up on Q1 budget approval (this week) → Active/admin/
-- Send stakeholder project update (overdue) → Active/projects/
+- Prepare for Customer X meeting (tomorrow)
+- Follow up on Q1 budget approval (this week)
+- Send stakeholder project update (overdue)
 
 Important (this month):
-- Review feature specs from Product → Active/projects/
-- Schedule 1:1s for next month → Active/admin/
-- Research customer health scoring tools → Active/projects/
+- Review feature specs from Product
+- Schedule 1:1s for next month
+- Research customer health scoring tools
 
 Ideas for later:
-- Draft blog post → Active/content/
-- Plan Q2 goals (not urgent yet) → Career/
+- Draft blog post
+- Plan Q2 goals (not urgent yet)
 
 Questions:
-- Customer Y API limits question - is this urgent? When do they need answer?
-- Blog post topic - is this part of a content calendar or ad-hoc?
+- Customer Y API limits question — is this urgent? When do they need answer?
+- Blog post topic — is this part of a content calendar or ad-hoc?
 
 BACKLOG.md has been cleared. Brain dump anytime!
 ```
 
 ## Step 6: Plan Your Day (2 minutes)
 
-Now ask Claude:
+Now ask Cursor:
 
 ```
 "What should I work on today?"
@@ -183,20 +177,20 @@ Now ask Claude:
 
 ### Example Response:
 ```
-Claude: Your top priorities for today:
+Cursor: Your top priorities for today:
 
-🔴 Urgent:
+Urgent:
 1. Prepare for Customer X meeting (tomorrow 10am)
    Next action: Review their account metrics and usage trends
 
 2. Send stakeholder project update (overdue)
    Next action: Compile progress notes into brief update email
 
-🟡 Important:
+Important:
 3. Follow up on Q1 budget approval
    Next action: Email finance team for status
 
-⚡ Quick wins:
+Quick wins:
 - Schedule next month's 1:1s (15 minutes)
 - Reply to Customer Y API question
 
@@ -208,7 +202,7 @@ Recommendation: Focus on Customer X prep first (highest impact), then stakeholde
 ### Morning (5 minutes)
 ```
 You: "What should I work on today?"
-AI: [Provides prioritized list based on your tasks and goals]
+Cursor: [Provides prioritized list based on your tasks and goals]
 ```
 
 ### Throughout the Day
@@ -223,13 +217,13 @@ Brain dump into `BACKLOG.md` as things come up:
 ### End of Day (5 minutes)
 ```
 You: "Process my backlog"
-AI: [Creates organized tasks from your brain dump]
+Cursor: [Creates organized tasks from your brain dump]
 ```
 
 ### Weekly (15 minutes)
 ```
-You: "Weekly review"
-AI: [Shows accomplishments, upcoming priorities, goal progress]
+You: "Run my weekly review"
+Cursor: [Shows accomplishments, upcoming priorities, goal progress]
 ```
 
 ## Congratulations!
@@ -239,37 +233,37 @@ You're now set up with an AI-native work management system.
 ## What's Next?
 
 Explore role-specific guides:
-- **[Content Creator](content-creator.md)** - Scripts, feedback, performance tracking
-- **[University Professor](university-professor.md)** - Research, teaching, advising
-- **[Operations Manager](operations-manager.md)** - Processes, vendors, incidents
-- **[Customer Success](customer-success.md)** - Account management, renewals, customer health
-- **[Marketing](marketing.md)** - Campaigns, content, launches
-- **[General Professional](general-professional.md)** - Applicable to any role
+- **[Content Creator](content-creator.md)** — Scripts, feedback, performance tracking
+- **[University Professor](university-professor.md)** — Research, teaching, advising
+- **[Operations Manager](operations-manager.md)** — Processes, vendors, incidents
+- **[Customer Success](customer-success.md)** — Account management, renewals, customer health
+- **[Marketing](marketing.md)** — Campaigns, content, launches
+- **[General Professional](general-professional.md)** — Applicable to any role
 
 Explore use cases:
-- **[1:1 Frameworks](../use-cases/1-on-1-frameworks/)** - Make your 1:1s more valuable
-- **[Professional Development](../use-cases/professional-development/)** - Track your growth
-- **[Career Portfolio](../use-cases/career-portfolio/)** - Build your accomplishments
-- **[Meeting Notes](../use-cases/meeting-notes/)** - Process meetings into action items
-- **[Project Tracking](../use-cases/project-tracking/)** - Manage complex initiatives
+- **[1:1 Frameworks](../use-cases/1-on-1-frameworks/)** — Make your 1:1s more valuable
+- **[Professional Development](../use-cases/professional-development/)** — Track your growth
+- **[Career Portfolio](../use-cases/career-portfolio/)** — Build your accomplishments
+- **[Meeting Notes](../use-cases/meeting-notes/)** — Process meetings into action items
+- **[Project Tracking](../use-cases/project-tracking/)** — Manage complex initiatives
 
 ## Tips for Success
 
-1. **Brain dump liberally** - Capture everything, organize later
-2. **Process daily** - Don't let your backlog pile up
-3. **Review weekly** - Reflect on accomplishments and adjust priorities
-4. **Trust Claude** - It's learning your patterns and preferences
-5. **Customize freely** - This is just a starting structure
+1. **Brain dump liberally** — Capture everything, organize later
+2. **Process daily** — Don't let your backlog pile up
+3. **Review weekly** — Reflect on accomplishments and adjust priorities
+4. **Trust Cursor** — It's learning your patterns and preferences
+5. **Customize freely** — This is just a starting structure
 
 ## Troubleshooting
 
-**Q: Claude isn't organizing tasks well**
-- Make sure Claude Code can read your `GOALS.md` and `AGENTS.md`
+**Q: Cursor isn't organizing tasks well**
+- Make sure Cursor can read your `GOALS.md` and `AGENTS.md` (open one of them in the editor and start a new chat)
 - Be more specific in your brain dumps
 - Give feedback: "This task should be important, not just scheduled"
 
 **Q: I have too many urgent tasks**
-- You probably don't — ask Claude to re-prioritize
+- You probably don't — ask Cursor to re-prioritize
 - True urgent = hard deadline THIS WEEK or blocking someone
 - Move some to "important" (matters but not this week)
 

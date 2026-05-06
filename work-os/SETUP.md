@@ -1,6 +1,6 @@
-# Setting Up work-os with Claude Code
+# Setting Up work-os with Cursor
 
-> A comprehensive guide to getting Claude Code and work-os running on your machine
+> A step-by-step guide to getting Cursor and work-os running on your machine.
 
 ---
 
@@ -17,39 +17,12 @@
 
 ## Prerequisites
 
-Before you begin, you'll need:
+You only need two things:
 
-### 1. **Operating System**
-- **macOS** (recommended) or **Linux**
-- **Windows**: Use WSL (Windows Subsystem for Linux) — [setup guide](https://learn.microsoft.com/en-us/windows/wsl/install)
+1. **[Cursor](https://cursor.com)** — Cursor reads `AGENTS.md` and the `.cursor/rules/` folder automatically, so it picks up the work-os harness as soon as you open the workspace.
+2. **Git** — To clone the repo. Any recent version is fine.
 
-### 2. **Terminal Familiarity**
-You should know these basic commands:
-- `cd` — Change directory
-- `ls` — List files in a directory
-- `pwd` — Print working directory (where am I?)
-- `git clone` — Clone a repository
-
-Don't worry if you're not a terminal expert — you only need these basics.
-
-### 3. **Node.js**
-Claude Code requires Node.js. Check if you have it:
-
-```bash
-node --version
-```
-
-If you don't have it or it's below v18, install it:
-- **macOS**: `brew install node` (requires [Homebrew](https://brew.sh/))
-- **Linux**: Follow [Node.js official guide](https://nodejs.org/en/download/package-manager)
-- **Windows (WSL)**: Same as Linux
-
-### 4. **Claude API Access**
-You need one of these:
-- **Claude Max subscription** (includes API access) — [claude.com](https://claude.com)
-- **Anthropic API key** — [console.anthropic.com](https://console.anthropic.com)
-
-Claude Code will prompt you to authenticate when you first run it.
+That's it — no Node.js, no API key configuration, no extra CLI to install. Cursor handles authentication and model access for you.
 
 ---
 
@@ -59,187 +32,106 @@ Claude Code will prompt you to authenticate when you first run it.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  STEP 1: Install Claude Code                                           │
-│  npm install -g @anthropic-ai/claude-code                              │
+│  STEP 1: Install Cursor                                                 │
+│  Download from https://cursor.com                                       │
 └─────────────────────────────────────────────────────────────────────────┘
                                     ↓
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  STEP 2: Clone work-os Repository                                      │
-│  git clone https://github.com/ahmadelswify/agentic-os/work-os.git          │
+│  STEP 2: Clone the agentic-os repository                                │
+│  git clone https://github.com/ahmadelswify/agentic-os.git               │
 └─────────────────────────────────────────────────────────────────────────┘
                                     ↓
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  STEP 3: Navigate Into Repository                                      │
-│  cd agentic-os/work-os                                                     │
-│  ls  (see the structure)                                               │
+│  STEP 3: Open the workspace in Cursor                                   │
+│  File → Open Folder → choose `agentic-os/`                              │
 └─────────────────────────────────────────────────────────────────────────┘
                                     ↓
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  STEP 4: Launch Claude Code                                            │
-│  claude                                                                │
+│  STEP 4: Open a Cursor chat inside `work-os/`                           │
 └─────────────────────────────────────────────────────────────────────────┘
                                     ↓
 ┌─────────────────────────────────────────────────────────────────────────┐
-│  STEP 5: Start Your First Workflow                                     │
-│  "Help me set up my work-os"                                           │
+│  STEP 5: Start your first workflow                                      │
+│  "Help me set up work-os"                                               │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-### Step 1: Install Claude Code
+### Step 1: Install Cursor
 
-Open your terminal and run:
+Download Cursor from [cursor.com](https://cursor.com) and finish first-time setup. Cursor handles model authentication on its own.
 
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-**What this does**: Installs Claude Code globally so you can run `claude` from anywhere.
-
-**Verify installation:**
-```bash
-claude --version
-```
-
-You should see version information displayed.
-
-**Alternative installation methods:**
-- **Homebrew (macOS)**: Check if available via `brew search claude-code`
-- **Manual**: Follow [official Claude Code docs](https://claude.com/claude-code)
-
----
-
-### Step 2: Clone the work-os Repository
+### Step 2: Clone the Repository
 
 ```bash
-git clone https://github.com/ahmadelswify/agentic-os/work-os.git
+git clone https://github.com/ahmadelswify/agentic-os.git
 ```
 
-**What this does**: Downloads the work-os template to your computer.
+Pick a location you can find again (for example `~/Documents/agentic-os` on macOS/Linux or `C:\Users\<you>\Documents\agentic-os` on Windows).
 
-**Where it goes**: Creates a folder called `agentic-os/work-os` in your current directory.
+### Step 3: Open the Workspace
 
-**Pro tip**: Clone it somewhere you can easily access, like:
-```bash
-cd ~/Documents  # Navigate to Documents folder first
-git clone https://github.com/ahmadelswify/agentic-os/work-os.git
-```
+In Cursor, choose **File → Open Folder** and select the cloned `agentic-os/` folder. Cursor automatically picks up:
 
----
+- The Cursor rules in `agentic-os/.cursor/rules/` and the parent workspace `.cursor/rules/`
+- The OS-specific `AGENTS.md` files (work-os, personal-os, meeting-os, career-os)
 
-### Step 3: Navigate Into the Repository
+### Step 4: Open a Cursor Chat in `work-os/`
 
-```bash
-cd agentic-os/work-os
-```
-
-**Verify you're in the right place:**
-```bash
-ls
-```
-
-You should see files like:
-```
-AGENTS.md       EXAMPLES.md     SETUP.md        templates/
-BACKLOG-template.md    GOALS-template.md    README.md       tutorials/
-CLAUDE.md       docs/           use-cases/
-```
-
-**Current directory check:**
-```bash
-pwd
-```
-
-Output should end with `/agentic-os/work-os`.
-
----
-
-### Step 4: Launch Claude Code
-
-Simply run:
-
-```bash
-claude
-```
-
-**What happens:**
-- Claude Code launches in your terminal
-- It automatically detects you're in the agentic-os/work-os directory
-- It reads the `CLAUDE.md` file (which points to `AGENTS.md`) for instructions
-- You'll see a prompt where you can start typing
-
-**First time setup:**
-If this is your first time running Claude Code, it will:
-1. Ask you to authenticate (via browser or API key)
-2. Show you a brief tutorial
-3. Then drop you into the conversation interface
-
----
+Open any file inside `agentic-os/work-os/` (for example `AGENTS.md`) and open a new chat. The matching Cursor rule will attach automatically when you ask about anything in this folder.
 
 ### Step 5: Start Your First Workflow
 
-Once Claude Code is running, type:
+In the chat, type:
 
 ```
-Help me set up my work-os
+Help me set up work-os
 ```
 
-Claude will:
-1. Ask about your role and work type
-2. Create a personalized directory structure
-3. Set up your `GOALS.md` file
+Cursor will:
+
+1. Ask about your role and work types
+2. Create your personalized directory structure
+3. Set up your `GOALS.md` and `BACKLOG.md` files from the templates
 4. Help you do your first brain dump
 5. Organize everything into tasks
 
-**This takes ~5 minutes** and you'll have a fully personalized productivity system.
+This takes about 5 minutes and you'll have a fully personalized productivity system.
 
 ---
 
 ## Understanding Key Files
 
-### CLAUDE.md
-
-**Location**: `/agentic-os/work-os/CLAUDE.md`
-
-**Purpose**: Claude Code automatically looks for a `CLAUDE.md` file when it starts in a directory. This file tells Claude how to behave in this workspace.
-
-**Contents**: Usually just points to `AGENTS.md` with:
-```markdown
-@AGENTS.md
-```
-
-**Why it exists**: Keeps configuration simple and allows you to update AI instructions without Claude Code knowing file names.
-
----
-
 ### AGENTS.md
 
-**Location**: `/agentic-os/work-os/AGENTS.md`
+**Location**: `agentic-os/work-os/AGENTS.md`
 
-**Purpose**: A short (~80 line) table of contents that tells the AI where to find instructions.
+**Purpose**: A short table of contents that tells Cursor where to find instructions.
 
-**Think of it as**: The map, not the manual. It points to deeper instruction files in `docs/` that the AI reads on-demand.
+**Think of it as**: The map, not the manual. It points to deeper instruction files in `docs/` and `workflows/` that Cursor reads on demand.
 
 **The `docs/` directory** contains the full harness:
 - `docs/agent-instructions/` — How to process inbox, manage tasks, align goals, etc.
 - `docs/workflows/` — Auto-detected workflows (content writing, weekly review, resume tailoring)
-- `docs/validation/` — Rules the AI checks after creating tasks
+- `docs/validation/` — Rules Cursor checks after creating tasks
 - `docs/garbage-collection/` — Cleanup rules for stale tasks and orphaned files
 
-**You can customize** by editing files in `docs/` — each file is focused on one topic.
+**The `workflows/` directory** contains specialized workflow references — what to do for "plan my day", "process my backlog", "log this accomplishment", etc.
+
+**You can customize** by editing files in `docs/` or `workflows/` — each one is focused on one topic.
 
 ---
 
 ### GOALS.md
 
-**Location**: `/agentic-os/work-os/GOALS.md`
+**Location**: `agentic-os/work-os/GOALS.md`
 
-**Note:** This file is created during your initial setup from `GOALS-template.md`. Claude Code will help you populate it when you say "Help me set up work-os".
+**Note:** This file is created during your initial setup from `GOALS-template.md`. Cursor will help you populate it when you say "Help me set up work-os".
 
 **Purpose**: Your strategic objectives and priorities.
 
-**Claude Code uses this to**:
+**Cursor uses this to**:
 - Evaluate which tasks are most important
 - Suggest daily priorities aligned with your goals
 - Filter out distractions that don't serve your objectives
@@ -263,17 +155,17 @@ Claude will:
 
 ### BACKLOG.md
 
-**Location**: `/agentic-os/work-os/BACKLOG.md`
+**Location**: `agentic-os/work-os/BACKLOG.md`
 
-**Note:** This file is created during your initial setup from `BACKLOG-template.md`. Claude Code will help you create it when you say "Help me set up work-os".
+**Note:** This file is created during your initial setup from `BACKLOG-template.md`. Cursor will help you create it when you say "Help me set up work-os".
 
 **Purpose**: Your brain dump inbox.
 
 **How to use it**:
 - Throughout your day, quickly capture thoughts here
 - Don't organize, just write
-- End of day: Tell Claude Code "process my backlog"
-- Claude organizes everything into structured tasks
+- End of day, tell Cursor "process my backlog"
+- Cursor organizes everything into structured tasks
 
 **Example**:
 ```markdown
@@ -294,8 +186,7 @@ After setup, your work-os will look like:
 
 ```
 work-os/
-├── CLAUDE.md              # Points Claude Code to AGENTS.md
-├── AGENTS.md              # AI map (~80 lines, points to docs/)
+├── AGENTS.md              # AI map (points to docs/ and workflows/)
 ├── GOALS.md               # Your objectives and priorities
 ├── BACKLOG.md             # Brain dump inbox
 │
@@ -305,6 +196,8 @@ work-os/
 │   ├── workflows/
 │   ├── validation/
 │   └── garbage-collection/
+│
+├── workflows/             # Specialized workflow references for Cursor
 │
 ├── Active/                # Current work (YOUR CATEGORIES)
 │   ├── client-work/
@@ -319,27 +212,20 @@ work-os/
 └── .health/               # Generated health reports (gitignored)
 ```
 
-The `Active/` structure is personalized during setup based on YOUR role. The `docs/` folder is the harness — it contains all the AI's instructions, broken into focused files that are loaded on-demand.
+The `Active/` structure is personalized during setup based on YOUR role.
 
 ---
 
 ## Your First Session
 
-Let's walk through a complete first session.
-
-### Launch Claude Code
-
-```bash
-cd agentic-os/work-os
-claude
-```
+Let's walk through a complete first session inside Cursor.
 
 ### Setup Conversation
 
 ```
 You: Help me set up my work-os
 
-Claude: I'll help you set up work-os for your needs. A few questions:
+Cursor: I'll help you set up work-os for your needs. A few questions:
 
 1. What's your role? (e.g., software engineer, marketer, content creator, etc.)
 2. What types of work fill your day?
@@ -347,7 +233,7 @@ Claude: I'll help you set up work-os for your needs. A few questions:
 You: I'm a product manager. I manage feature development, talk to customers,
      and work with engineering and design teams.
 
-Claude: Great! To customize this for you:
+Cursor: Great! To customize this for you:
 
 1. What makes something urgent in your work?
 2. What do you want to spend less time organizing?
@@ -357,12 +243,12 @@ You: Urgent is usually customer escalations or release blockers. I lose track
      of customer feedback and forget to follow up. Goals are to ship v2.0 this
      quarter and improve our customer satisfaction score.
 
-Claude: Perfect! Let me set up work-os for product management...
+Cursor: Perfect! Let me set up work-os for product management...
 
 [Creates directory structure]
 [Sets up GOALS.md]
 
-Claude: Done! Your structure:
+Done! Your structure:
 
 Active/
 ├── feature-work/      # Feature development and specs
@@ -391,17 +277,14 @@ You:
 - Research competitor pricing models
 - Prep for 1:1 with my manager on Friday
 
-Claude: [Processing...]
+Cursor: [Processing...]
 
 All organized! Here's what I created:
 
 Urgent (this week):
 • Customer escalation - BetaCo login issues
-  → Active/customers/betaco-login-issue.md
 • Review search feature spec with engineering (blocking development)
-  → Active/engineering/search-feature-review.md
 • Prep for 1:1 with manager (Friday)
-  → Career/1-on-1s/manager-1on1-prep.md
 
 Important (this month):
 • Follow up with AcmeCorp feature request
@@ -416,7 +299,7 @@ Your work-os is ready! Here's how to use it:
 Morning: "What should I work on today?"
 During work: Add notes to BACKLOG.md
 End of day: "Process my backlog"
-Weekly: "Weekly review"
+Weekly: "Run my weekly review"
 
 Want me to show you what to focus on today?
 ```
@@ -426,7 +309,7 @@ Want me to show you what to focus on today?
 ```
 You: What should I work on today?
 
-Claude: Here's your focus for today:
+Cursor: Here's your focus for today:
 
 Urgent:
 1. BetaCo login escalation - customer is blocked (30 min estimated)
@@ -447,15 +330,13 @@ You're in good shape. Two critical items, then you can breathe.
 
 ### Morning Planning
 
-```bash
-claude
-```
+In a Cursor chat scoped to `work-os/`:
 
 ```
 You: What should I work on today?
 ```
 
-Claude reviews your tasks, goals, and priorities to suggest your daily focus.
+Cursor reviews your tasks, goals, and priorities to suggest your daily focus.
 
 ---
 
@@ -463,22 +344,22 @@ Claude reviews your tasks, goals, and priorities to suggest your daily focus.
 
 Throughout your day, capture thoughts in `BACKLOG.md`:
 
-```bash
-# Option 1: Edit BACKLOG.md directly in any editor
-# Option 2: Tell Claude Code directly
+- **Option 1:** Edit `BACKLOG.md` directly in Cursor or any editor
+- **Option 2:** Tell Cursor in chat:
 
-You (in Claude session): Add to backlog: Call vendor about invoice discrepancy
-```
+  ```
+  You: Add to backlog: Call vendor about invoice discrepancy
+  ```
 
 ---
 
-### Processing Your Inbox
+### Processing Your Backlog
 
 ```
 You: Process my backlog
 ```
 
-Claude reads `BACKLOG.md`, creates organized task files, assigns priorities, and clears your inbox.
+Cursor reads `BACKLOG.md`, creates organized task files, assigns priorities, and clears your inbox.
 
 ---
 
@@ -495,10 +376,10 @@ You: Block [task name] - waiting on legal review
 ### Weekly Review
 
 ```
-You: Weekly review
+You: Run my weekly review
 ```
 
-Claude helps you:
+Cursor helps you:
 - Review what you accomplished
 - Identify what's still pending
 - Clean up completed tasks
@@ -508,105 +389,32 @@ Claude helps you:
 
 ## Troubleshooting
 
-### "claude: command not found"
+### Cursor isn't following the work-os rules
 
-**Problem**: Claude Code isn't installed or not in your PATH.
+**Problem**: The chat doesn't seem to be reading `AGENTS.md` or applying the harness.
 
 **Solution**:
-```bash
-npm install -g @anthropic-ai/claude-code
-
-# If still not working, check your PATH
-echo $PATH
-
-# May need to restart terminal
-```
+1. Confirm you opened the parent `agentic-os/` folder (or any folder above `work-os/`) so Cursor sees `.cursor/rules/`.
+2. Open a file inside `work-os/` and open a fresh chat. The work-os rule attaches based on file globs.
+3. Ask Cursor to read `AGENTS.md` explicitly: "Read agentic-os/work-os/AGENTS.md and follow it."
 
 ---
 
-### "Permission denied" when installing
+### Cursor doesn't see my files
 
-**Problem**: npm doesn't have permission to install globally.
-
-**Solution**:
-```bash
-sudo npm install -g @anthropic-ai/claude-code
-```
-
----
-
-### "Failed to authenticate"
-
-**Problem**: Claude Code can't access your API key or Claude Max subscription.
+**Problem**: Cursor is in a different workspace or chat scope.
 
 **Solution**:
-1. Ensure you have an active Claude Max subscription OR Anthropic API key
-2. Run `claude auth` to re-authenticate
-3. Follow the browser authentication flow
-
----
-
-### Claude Code doesn't see my files
-
-**Problem**: Claude Code is running in the wrong directory.
-
-**Solution**:
-```bash
-# Check current directory
-pwd
-
-# Navigate to work-os
-cd path/to/agentic-os/work-os
-
-# Then launch
-claude
-```
-
----
-
-### "Cannot find AGENTS.md"
-
-**Problem**: You're not in the agentic-os/work-os directory.
-
-**Solution**:
-```bash
-# Verify you're in the right place
-ls
-
-# You should see AGENTS.md in the list
-# If not, navigate to agentic-os/work-os:
-cd path/to/agentic-os/work-os
-```
-
----
-
-### Claude Code is not using AGENTS.md
-
-**Problem**: CLAUDE.md might not be pointing correctly, or Claude Code isn't detecting it.
-
-**Solution**:
-1. Check that `CLAUDE.md` exists in the root directory
-2. Check its contents - should contain `@AGENTS.md`
-3. Restart Claude Code session
-4. Alternatively, you can directly say "Read AGENTS.md for instructions"
+1. Make sure the workspace root in Cursor is the cloned `agentic-os/` directory (or its parent).
+2. Open a file inside `work-os/` so Cursor's working file context is correct, then start a new chat.
 
 ---
 
 ### Tasks aren't being created
 
-**Problem**: Directory structure may not exist or permissions issue.
+**Problem**: Required directories may not exist yet.
 
-**Solution**:
-```bash
-# Verify Active/ directory exists
-ls -la
-
-# If not, create it
-mkdir -p Active
-
-# Check permissions
-chmod -R u+w .
-```
+**Solution**: Run setup again — "Help me set up work-os" — and let Cursor create `Active/`, `Projects/`, `Career/`, `Knowledge/`, and `Archive/` for you.
 
 ---
 
@@ -623,9 +431,9 @@ Now that you're set up:
 
 ## Additional Resources
 
-- **Official Claude Code Docs**: [claude.com/claude-code](https://claude.com/claude-code)
+- **Cursor Docs**: [cursor.com/docs](https://cursor.com/docs)
 - **work-os Examples**: See [EXAMPLES.md](EXAMPLES.md) for real conversation examples
-- **GitHub Repository**: [github.com/ahmadelswify/agentic-os/work-os](https://github.com/ahmadelswify/agentic-os/work-os)
+- **GitHub Repository**: [github.com/ahmadelswify/agentic-os](https://github.com/ahmadelswify/agentic-os)
 
 ---
 
