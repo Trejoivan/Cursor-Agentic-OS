@@ -172,6 +172,18 @@ Quick questions ("What's due this week?") can be handled directly. Deeper reques
 
 ---
 
+## Role Guides (Optional)
+
+If the user asks for role-specific coaching, skill-building, or "act as my [role]" guidance, load the matching guide from `tutorials/` and use it as the role lens (while still using work-os to track tasks, goals, and professional development).
+
+- **Software Engineer**: `tutorials/software-engineer.md`
+- **Technical Product Manager**: `tutorials/technical-product-manager.md`
+- **Solutions Manager**: `tutorials/solutions-manager.md`
+- **AI Engineer**: `tutorials/ai-engineer.md`
+- **General Professional**: `tutorials/general-professional.md`
+
+---
+
 ## Common Cursor Prompts
 
 These are the natural-language phrasings users typically reach for. Cursor responds directly — no slash commands required.

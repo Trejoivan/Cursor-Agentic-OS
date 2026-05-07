@@ -76,6 +76,10 @@ Cursor helps you reflect, track progress, and plan ahead.
 Start here, then choose the guide that fits your work:
 
 - **[Getting Started](tutorials/getting-started.md)** — 15-minute setup for everyone
+- **[Software Engineer](tutorials/software-engineer.md)** — Sprint execution, reviews, reliability, skill growth
+- **[Technical Product Manager](tutorials/technical-product-manager.md)** — Decisions, alignment, delivery comms, impact
+- **[Solutions Manager](tutorials/solutions-manager.md)** — Discovery → scope, implementation plans, escalations
+- **[AI Engineer](tutorials/ai-engineer.md)** — Experiments, evaluation, productionization, responsible AI
 - **[Content Creator](tutorials/content-creator.md)** — Scripts, feedback, performance tracking
 - **[University Professor](tutorials/university-professor.md)** — Research, teaching, advising, grants
 - **[Operations Manager](tutorials/operations-manager.md)** — Processes, vendors, incidents
