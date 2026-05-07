@@ -5,6 +5,10 @@
 
 A collection of markdown-based operating systems where AI handles the structure, organization, and context so you can focus on what matters. Each OS is self-contained, local-first, and runs entirely inside [Cursor](https://cursor.com) using `AGENTS.md` and project rules.
 
+## About This Fork
+
+This repo is my attempt to convert a pre-existing **Claude Code** “agentic OS” style process into **my own Cursor-compatible OS workflow** (local-first markdown + `AGENTS.md` + `.cursor/rules`). Expect iteration as I adapt the ideas to how Cursor actually operates.
+
 ## What Is an Agentic OS?
 
 An agentic OS is a folder of markdown files plus a set of Cursor rules and workflows that turn Cursor into a specialized assistant. No databases, no SaaS, no vendor lock-in. Your data lives as plain text on your machine. Cursor reads your instructions, understands your context, and manages the system through conversation.

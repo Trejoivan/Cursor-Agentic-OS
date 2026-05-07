@@ -4,6 +4,10 @@
 
 A Cursor-driven productivity workspace where you talk to the AI instead of filling out forms. Open the workspace, ask in natural language, and Cursor handles the structure.
 
+## About This Fork
+
+This is my attempt at adapting a pre-existing **Claude Code** agentic OS workflow into a **Cursor-compatible** process (local-first markdown + `AGENTS.md` + `.cursor/rules`). The goal is to keep the spirit of the original approach while making it work cleanly inside Cursor.
+
 ## How It Works
 
 1. **Brain dump** into BACKLOG.md throughout your day
