@@ -1,0 +1,21 @@
+---
+description: Route major project ideas through BMAD workspaces
+globs: "**/*"
+alwaysApply: true
+---
+
+# BMAD projects (consolidated)
+
+- When the user brings up a **major project idea** (new product/app, big feature, business idea, workflow/system design, or anything that needs structured refinement), default to using the consolidated BMAD workspace approach in `bmad-projects/<project-slug>/`.
+- Do **not** copy BMAD into a new folder. Reuse the repo’s single BMAD install under `_Bmad/`.
+- Create/open a project workspace via `scripts/bmad-project.ps1`:
+  - `.\scripts\bmad-project.ps1 new "<Project Name>"`
+  - `.\scripts\bmad-project.ps1 open "<project-slug>"`
+- Keep all artifacts, drafts, and outputs for that idea inside the project folder:
+  - `bmad-projects/<slug>/_bmad-output/` for BMAD-generated outputs
+  - `bmad-projects/<slug>/.bmad/state.json` for resume/checkpoints
+  - `bmad-projects/<slug>/START-HERE.md` as the human entrypoint
+- Prefer updating the project’s resume state as you go:
+  - `.\scripts\bmad-project.ps1 checkpoint "<project-slug>" -Step "<what you just completed / next step>"`
+- Treat `bmad-projects/**/_bmad` and `bmad-projects/**/.agents` as junctions to shared BMAD resources. Do not modify shared BMAD internals during normal project work.
+

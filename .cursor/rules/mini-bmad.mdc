@@ -1,0 +1,32 @@
+---
+description: Mini-BMAD ad-hoc runs for research, meetings, and presentations
+globs: "**/*"
+alwaysApply: true
+---
+
+# Mini-BMAD (ad-hoc)
+
+- When the user asks for **research**, **meeting planning**, **presentation brainstorming**, or other **ad-hoc** work they want to keep organized and summarizable, default to using `_mini_bmad/` runs.
+- Create/open a run via `scripts/mini-bmad.ps1`:
+  - `.\scripts\mini-bmad.ps1 new "<topic>"`
+  - `.\scripts\mini-bmad.ps1 open "<run-slug>"`
+- Keep all one-off artifacts inside the run folder (notes, agendas, outlines, links, decisions).
+- While working, maintain an always-on **very short pending changes list** in the run:
+  - `bmad run/.mini-bmad/CHANGES.md`
+  - Add one bullet per meaningful event/item changed (new decision, new constraint, new agenda, key finding).
+  - Do not clear this list during normal work.
+- Use checkpoints to record where the user left off:
+  - `.\scripts\mini-bmad.ps1 checkpoint "<run-slug>" -Step "<where you left off / next step>"`
+- When the user is confident and wants to “wrap up”, generate a consolidated pack:
+  - `.\scripts\mini-bmad.ps1 summarize "<run-slug>"`
+- When the user says “Summarize my work from my last summary”, produce a **delta summary** (very short bullets) and clear pending changes:
+  - `.\scripts\mini-bmad.ps1 delta "<run-slug>"`
+- If you (the agent) make meaningful updates during a run, prefer logging them immediately:
+  - `.\scripts\mini-bmad.ps1 log "<run-slug>" -Item "<short change>"`
+- If the run should update a major BMAD project, link and sync:
+  - `.\scripts\mini-bmad.ps1 link "<run-slug>" -Project "<bmad-project-slug>"`
+  - `.\scripts\mini-bmad.ps1 summarize "<run-slug>" -Sync`
+  - or sync only the delta:
+    - `.\scripts\mini-bmad.ps1 delta "<run-slug>" -Sync`
+  - Sync outputs land in `bmad-projects/<slug>/_mini-bmad-updates/` as import payloads the major project can incorporate.
+
