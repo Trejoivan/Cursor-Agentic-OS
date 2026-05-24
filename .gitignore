@@ -45,3 +45,18 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
+
+# Secrets / local env (never commit)
+.env
+.env.*
+!.env.example
+
+# Common private key / cert formats
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Common credential filenames
+credentials.json
+serviceAccount*.json
