@@ -15,6 +15,8 @@ alwaysApply: true
   - `bmad-projects/<slug>/_bmad-output/` for BMAD-generated outputs
   - `bmad-projects/<slug>/.bmad/state.json` for resume/checkpoints
   - `bmad-projects/<slug>/START-HERE.md` as the human entrypoint
+- Treat `bmad-projects/<slug>/` as **private by default** (gitignored). Do not move raw work out of this folder unless the user explicitly wants to publish it.
+- If the user wants to share/publish a project, copy curated artifacts into `Published/` (sanitized, no private notes).
 - Prefer updating the project’s resume state as you go:
   - `.\scripts\bmad-project.ps1 checkpoint "<project-slug>" -Step "<what you just completed / next step>"`
 - Treat `bmad-projects/**/_bmad` and `bmad-projects/**/.agents` as junctions to shared BMAD resources. Do not modify shared BMAD internals during normal project work.

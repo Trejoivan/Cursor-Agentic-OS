@@ -11,6 +11,8 @@ alwaysApply: true
   - `.\scripts\mini-bmad.ps1 new "<topic>"`
   - `.\scripts\mini-bmad.ps1 open "<run-slug>"`
 - Keep all one-off artifacts inside the run folder (notes, agendas, outlines, links, decisions).
+- Treat `_mini_bmad/runs/...` as **private by default** (gitignored). Do not publish raw runs unless the user explicitly wants to.
+- If the user wants to share/publish outputs, copy curated artifacts into `Published/` (sanitized, minimal).
 - While working, maintain an always-on **very short pending changes list** in the run:
   - `bmad run/.mini-bmad/CHANGES.md`
   - Add one bullet per meaningful event/item changed (new decision, new constraint, new agenda, key finding).
