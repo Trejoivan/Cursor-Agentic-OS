@@ -162,6 +162,7 @@ When the user's intent matches one of these, follow the matching file in `workfl
 | "Process my backlog" | `workflows/backlog-processor.md` |
 | "Weekly review" | `workflows/weekly-reviewer.md` |
 | "Add a task: …" | `workflows/add-task.md` |
+| "Create a new project" / "I have a project idea" / "Update project context" | `workflows/project-intake.md` |
 | "Log this accomplishment" | `workflows/career-tracker.md` |
 | "Process these meeting notes" | `workflows/meeting-processor.md` |
 | "Generate a status report" | `workflows/project-reporter.md` |

@@ -14,6 +14,7 @@ These files describe specialized workflows the assistant follows for common requ
 | "Prep me for a meeting" | `prep-meeting.md` |
 | "Process these meeting notes" | `meeting-processor.md` |
 | "Log this accomplishment" | `career-tracker.md` |
+| "Create a new project" / "I have a project idea" / "Update project context" | `project-intake.md` |
 | "Generate a status report" | `project-reporter.md` |
 
 The Cursor rule at `.cursor/rules/work-os.mdc` points the assistant at this folder when it needs deeper guidance for a request.
