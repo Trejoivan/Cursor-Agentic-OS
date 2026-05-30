@@ -1,6 +1,6 @@
 ---
 description: Cursor adaptation for agentic-os workspaces
-globs: agentic-os/**
+globs: **/*
 alwaysApply: false
 ---
 
