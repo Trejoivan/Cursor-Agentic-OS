@@ -69,6 +69,18 @@ Use a run under `_mini_bmad/runs/...`.
 
 Mini-bmad runs are private by default and can optionally sync summaries into a BMAD project.
 
+### Track ad-hoc tasks repo-wide (summarize + reset)
+
+If you want a lightweight “what did I do?” log across *any* folder in this repo, use:
+
+```powershell
+.\scripts\task-ledger.ps1 log -What "Did X"
+.\scripts\task-ledger.ps1 run -What "Did Y" -Cmd "some command here"
+.\scripts\task-ledger.ps1 summarize
+```
+
+See `TASK-TRACKING.md` for details.
+
 ## The Folder Guide
 
 - **`work-os/`**: professional execution system (planning, tasks, goals, projects)

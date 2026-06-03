@@ -67,6 +67,20 @@ Open the run folder and start with:
 - `START-HERE.md`
 - `NOTES.md`
 
+### Default run folders
+
+New runs are scaffolded with a small set of folders so you can keep ad-hoc work organized:
+
+- `meeting/`: agenda, attendees, decisions
+- `prep/`: checklists, questions, pre-reads
+- `analysis/`: structured options/trade-offs/recommendation
+- `refinements/`: iterative rewrites / versions
+- `summary/`: human-written summary draft (separate from generated outputs)
+- `links/`: quick links list
+- `notes/`: extra scratch notes (in addition to top-level `NOTES.md`)
+- `artifacts/`: supporting drafts/exports/diagrams
+- `_promote-templates/`: drop `.md` / `.txt` files here to save as reusable templates on `summarize`
+
 Outputs:
 
 - Consolidated “summary pack”: `_mini_bmad/runs/<run>/_mini-summary/SUMMARY-PACK.md`

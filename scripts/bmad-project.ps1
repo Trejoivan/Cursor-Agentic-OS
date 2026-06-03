@@ -34,6 +34,23 @@ function Get-RepoRoot {
   return $root.Path
 }
 
+function Try-TaskLedgerLog {
+  param(
+    [Parameter(Mandatory = $true)][string]$RepoRoot,
+    [Parameter(Mandatory = $true)][string]$What,
+    [string]$Project,
+    [string[]]$Tags
+  )
+
+  try {
+    $tracker = Join-Path $RepoRoot 'scripts\task-ledger.ps1'
+    if (-not (Test-Path -LiteralPath $tracker)) { return }
+    & $tracker log -What $What -Project $Project -Tags $Tags | Out-Null
+  } catch {
+    # Never block bmad-project if tracking fails.
+  }
+}
+
 function ConvertTo-Slug {
   param([Parameter(Mandatory = $true)][string]$Text)
   $t = $Text.Trim().ToLowerInvariant()
@@ -203,6 +220,7 @@ switch ($Command) {
     $slug = ConvertTo-Slug -Text $Name
     $projRoot = Ensure-Project -ProjectsRoot $projectsRoot -BmadInstallRoot $bmadInstallRoot -Slug $slug -DisplayName $Name
     if (-not $NoLaunch) { [void](Try-LaunchEditor -FolderPath $projRoot) }
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("bmad-project new: " + $Name) -Project ("bmad:" + $slug) -Tags @('bmad-project', 'new')
     $projRoot
   }
 
@@ -211,6 +229,7 @@ switch ($Command) {
     $slug = ConvertTo-Slug -Text $Name
     $projRoot = Ensure-Project -ProjectsRoot $projectsRoot -BmadInstallRoot $bmadInstallRoot -Slug $slug -DisplayName $Name
     if (-not $NoLaunch) { [void](Try-LaunchEditor -FolderPath $projRoot) }
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("bmad-project open: " + $slug) -Project ("bmad:" + $slug) -Tags @('bmad-project', 'open')
     $projRoot
   }
 
@@ -238,6 +257,7 @@ switch ($Command) {
       step = $Step
     }
     Write-State -StatePath $statePath -StateObject $state
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("bmad-project checkpoint: " + $Step) -Project ("bmad:" + $slug) -Tags @('bmad-project', 'checkpoint')
     $state
   }
 }

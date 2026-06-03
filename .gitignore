@@ -56,6 +56,9 @@ INBOX.md
 # Health reports (generated, point-in-time)
 .health/
 
+# Repo-wide ad-hoc task ledger (local-first / private)
+.task-ledger/
+
 # OS files
 .DS_Store
 Thumbs.db

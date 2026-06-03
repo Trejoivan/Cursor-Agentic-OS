@@ -21,7 +21,9 @@ Use `_mini_bmad/` for quick, one-off work that should still be **capturable, res
 2. Work inside the run folder:
    - `START-HERE.md` for orientation
    - `NOTES.md` for ongoing notes
-   - Put any additional artifacts next to them (or in `artifacts/`)
+   - Use the scaffold folders as needed:
+     - `meeting/`, `prep/`, `analysis/`, `refinements/`, `summary/`, `links/`, `notes/`, `artifacts/`
+     - `_promote-templates/` to save `.md` / `.txt` files as reusable templates on `summarize`
 
 3. When ready, consolidate:
 

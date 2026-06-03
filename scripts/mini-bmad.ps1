@@ -41,6 +41,23 @@ function Get-RepoRoot {
   return $root.Path
 }
 
+function Try-TaskLedgerLog {
+  param(
+    [Parameter(Mandatory = $true)][string]$RepoRoot,
+    [Parameter(Mandatory = $true)][string]$What,
+    [string]$Project,
+    [string[]]$Tags
+  )
+
+  try {
+    $tracker = Join-Path $RepoRoot 'scripts\task-ledger.ps1'
+    if (-not (Test-Path -LiteralPath $tracker)) { return }
+    & $tracker log -What $What -Project $Project -Tags $Tags | Out-Null
+  } catch {
+    # Never block mini-bmad if tracking fails.
+  }
+}
+
 function ConvertTo-Slug {
   param([Parameter(Mandatory = $true)][string]$Text)
   $t = $Text.Trim().ToLowerInvariant()
@@ -144,6 +161,198 @@ function Ensure-ChangesFile {
   return $changesPath
 }
 
+function Ensure-RunScaffold {
+  param(
+    [Parameter(Mandatory = $true)][string]$RunRoot,
+    [Parameter(Mandatory = $true)][string]$DisplayName
+  )
+
+  $folders = @(
+    'meeting',
+    'prep',
+    'notes',
+    'analysis',
+    'refinements',
+    'summary',
+    'links',
+    'artifacts',
+    '_promote-templates'
+  )
+
+  foreach ($f in $folders) {
+    Ensure-Dir -Path (Join-Path $RunRoot $f)
+  }
+
+  $starterFiles = @(
+    @{
+      path = (Join-Path $RunRoot 'meeting\AGENDA.md')
+      lines = @(
+        ('# Meeting - ' + $DisplayName),
+        '',
+        '## Purpose',
+        '',
+        '- ',
+        '',
+        '## Attendees',
+        '',
+        '- ',
+        '',
+        '## Pre-reads / context',
+        '',
+        '- ',
+        '',
+        '## Desired outcomes',
+        '',
+        '- ',
+        '',
+        '## Agenda',
+        '',
+        '1. ',
+        '2. ',
+        '3. ',
+        '',
+        '## Decisions to make',
+        '',
+        '- ',
+        '',
+        '## Questions to answer',
+        '',
+        '- ',
+        '',
+        '## Action items (owner + due date)',
+        '',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'prep\CHECKLIST.md')
+      lines = @(
+        ('# Prep checklist - ' + $DisplayName),
+        '',
+        '- [ ] Define goal / outcome',
+        '- [ ] Collect pre-reads / context',
+        '- [ ] Draft questions',
+        '- [ ] Draft agenda / structure',
+        '- [ ] Identify decisions needed',
+        '- [ ] Identify risks / open questions',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'analysis\ANALYSIS.md')
+      lines = @(
+        ('# Analysis - ' + $DisplayName),
+        '',
+        '## Observations',
+        '',
+        '- ',
+        '',
+        '## Options',
+        '',
+        '- ',
+        '',
+        '## Trade-offs',
+        '',
+        '- ',
+        '',
+        '## Recommendation',
+        '',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'refinements\REFINEMENTS.md')
+      lines = @(
+        ('# Refinements - ' + $DisplayName),
+        '',
+        'Use this for iterative edits, rewrites, and “versioned” improvements.',
+        '',
+        '## v1',
+        '',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'summary\DRAFT.md')
+      lines = @(
+        ('# Summary draft - ' + $DisplayName),
+        '',
+        'Use this for a human-written summary you can tweak.',
+        '',
+        'Generated outputs live in `_mini-summary/` (created by `summarize` / `delta`).',
+        '',
+        '## Summary',
+        '',
+        '- ',
+        '',
+        '## Decisions',
+        '',
+        '- ',
+        '',
+        '## Next steps',
+        '',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'links\LINKS.md')
+      lines = @(
+        ('# Links - ' + $DisplayName),
+        '',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'notes\README.md')
+      lines = @(
+        '# Notes folder',
+        '',
+        'You can keep ongoing notes in the top-level `NOTES.md`.',
+        '',
+        'Use this folder for additional scratch notes, transcripts, or deep dives you want separated.',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'artifacts\README.md')
+      lines = @(
+        '# Artifacts folder',
+        '',
+        'Put supporting files here (drafts, exports, diagrams, snippets).',
+        '',
+        'Note: `_mini-summary/` is reserved for generated consolidation outputs.',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot '_promote-templates\README.md')
+      lines = @(
+        '# Promote templates',
+        '',
+        'Drop any `.md` / `.txt` files here that you want to save as reusable templates.',
+        '',
+        'Then run:',
+        '',
+        '```powershell',
+        '.\scripts\mini-bmad.ps1 summarize "<run-slug>"',
+        '```',
+        ''
+      )
+    }
+  )
+
+  foreach ($sf in $starterFiles) {
+    if (-not (Test-Path -LiteralPath $sf.path)) {
+      Set-Content -LiteralPath $sf.path -Encoding utf8 -Value ($sf.lines -join [Environment]::NewLine)
+    }
+  }
+}
+
 function Ensure-RunFiles {
   param(
     [Parameter(Mandatory = $true)][string]$RunRoot,
@@ -189,7 +398,17 @@ function Ensure-RunFiles {
       '## Where to work',
       '',
       '- NOTES.md for ongoing notes',
-      '- Add extra artifacts next to it (or create artifacts/)',
+      '- meeting/ for agenda, attendees, decisions',
+      '- prep/ for checklists, questions, pre-reads',
+      '- analysis/ for structured trade-offs and recommendations',
+      '- refinements/ for iterative rewrites',
+      '- summary/ for a human-written summary draft',
+      '- links/ for a quick links list',
+      '- artifacts/ for supporting drafts/exports/diagrams',
+      '',
+      'Generated outputs:',
+      '',
+      '- `_mini-summary/` (created by `summarize` / `delta`)',
       '',
       '## Resume / status',
       '',
@@ -260,6 +479,7 @@ function Ensure-Run {
     Write-Json -Path $statePath -Object $state
   }
 
+  Ensure-RunScaffold -RunRoot $runRoot -DisplayName $DisplayName
   Ensure-RunFiles -RunRoot $runRoot -Slug $Slug -DisplayName $DisplayName
   $stateNow = Read-Json -Path $statePath
   [void](Ensure-ChangesFile -RunRoot $runRoot -State $stateNow)
@@ -593,6 +813,8 @@ switch ($Command) {
     $slug = ConvertTo-Slug -Text $Name
     $runRoot = Ensure-Run -RepoRoot $repoRoot -Slug $slug -DisplayName $Name
     if (-not $NoLaunch) { [void](Try-LaunchEditor -FolderPath $runRoot) }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad new: " + $Name) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'new')
     $runRoot
   }
 
@@ -601,6 +823,8 @@ switch ($Command) {
     $slug = ConvertTo-Slug -Text $Name
     $runRoot = Ensure-Run -RepoRoot $repoRoot -Slug $slug -DisplayName $Name -AllowExisting
     if (-not $NoLaunch) { [void](Try-LaunchEditor -FolderPath $runRoot) }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad open: " + $slug) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'open')
     $runRoot
   }
 
@@ -627,6 +851,8 @@ switch ($Command) {
     $state.updatedAt = $now
     $state.lastCheckpoint = [ordered]@{ at = $now; step = $Step }
     Write-Json -Path $statePath -Object $state
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad checkpoint: " + $Step) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'checkpoint')
     $state
   }
 
@@ -644,6 +870,8 @@ switch ($Command) {
     }
     $state.updatedAt = (Get-Date).ToString('o')
     Write-Json -Path $statePath -Object $state
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad link: " + $pSlug) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'link')
     $state
   }
 
@@ -658,6 +886,8 @@ switch ($Command) {
     $state.linkedProjects = @($state.linkedProjects | ForEach-Object { "$_" } | Where-Object { $_ -ne $pSlug })
     $state.updatedAt = (Get-Date).ToString('o')
     Write-Json -Path $statePath -Object $state
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad unlink: " + $pSlug) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'unlink')
     $state
   }
 
@@ -669,6 +899,8 @@ switch ($Command) {
     if ($Sync -and $result.linkedProjects.Count -gt 0) {
       Sync-ToBmadProjects -RepoRoot $repoRoot -RunRoot $runRoot -SummaryPackPath $result.summaryPack -LinkedProjects $result.linkedProjects
     }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad summarize" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'summarize')
     $result
   }
 
@@ -682,6 +914,8 @@ switch ($Command) {
     Append-Change -RunRoot $runRoot -State $state -Message $Item
     $state.updatedAt = (Get-Date).ToString('o')
     Write-Json -Path $statePath -Object $state
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad log: " + $Item) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'log')
     [ordered]@{ runRoot = $runRoot; changesFile = (Get-ChangesPath -RunRoot $runRoot) }
   }
 
@@ -694,6 +928,8 @@ switch ($Command) {
       # Sync the delta summary as the payload (not the full pack).
       Sync-ToBmadProjects -RepoRoot $repoRoot -RunRoot $runRoot -SummaryPackPath $result.deltaSummary -LinkedProjects $result.linkedProjects
     }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad delta" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'delta', 'reset')
     $result
   }
 }
