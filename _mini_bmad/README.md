@@ -16,6 +16,11 @@
   - run **delta** to summarize *only the work since your last delta summary* (very short bullets) and clear pending changes
   - run **summarize** to produce a consolidated “summary pack” (full collated artifacts)
 
+Mini-bmad can also serve as a **summary layer** for ad-hoc work you did elsewhere in the repo (for example under `AD_HOC/`), especially when:
+
+- you want a day/week/multi-week consolidation window
+- you want to sync learnings/decisions back into a major BMAD project
+
 ## Common commands (Windows / PowerShell)
 
 Create a new mini run:

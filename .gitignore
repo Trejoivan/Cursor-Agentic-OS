@@ -107,3 +107,12 @@ bmad-projects/*/
 !bmad-projects/AGENTS.md
 
 _mini_bmad/runs/
+
+# ---- AD_HOC (private by default; keep scaffold tracked) ----
+AD_HOC/**
+!AD_HOC/
+!AD_HOC/README.md
+!AD_HOC/workspace/
+!AD_HOC/workspace/**/
+!AD_HOC/workspace/README.md
+!AD_HOC/workspace/**/README.md

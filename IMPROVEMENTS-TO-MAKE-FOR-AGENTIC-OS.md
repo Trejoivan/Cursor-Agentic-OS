@@ -25,94 +25,43 @@ The main friction is that the repo has grown beyond the original four-OS model, 
 
 ## Priority Improvements
 
-### 1. Add a Root `START-HERE.md`
+Status key:
 
-Create a single entrypoint that explains the whole workspace:
+- ✅ Resolved
+- 🟡 Partially resolved / needs follow-up
+- ⏳ Still an improvement to make
 
-- What Agentic OS is.
-- What each top-level folder is for.
-- How the four OS folders relate to BMAD, mini-BMAD, `Published/`, and `agentic-db/`.
-- What should be private by default.
-- What should be shareable or publishable.
-- How a user should start depending on their goal.
+### ✅ 1. Add a Root `START-HERE.md`
 
-This is the highest-impact improvement because it gives both humans and AI agents a reliable map before they start exploring.
+Resolved. `START-HERE.md` exists and acts as a single entrypoint for the workspace.
 
-### 2. Add a "Which Layer Should I Use?" Decision Table
+### ✅ 2. Add a "Which Layer Should I Use?" Decision Table
 
-Add a simple decision table to the root docs.
+Resolved. The decision table is included in `START-HERE.md`.
 
-Suggested routing:
+### ✅ 3. Fix the Core Cursor Rule Glob
 
-| User Intent | Best Place |
-| --- | --- |
-| Daily professional planning | `work-os/` |
-| Job search, resume, interviews | `career-os/` |
-| Personal planning and life admin | `personal-os/` |
-| Meeting prep, notes, decisions, actions | `meeting-os/` |
-| Major product, app, business, or workflow idea | `bmad-projects/` |
-| Quick research, brainstorm, meeting plan, or presentation outline | `_mini_bmad/` |
-| Curated artifact to share | `Published/` |
-| Experimental structured storage | `agentic-db/` |
+Resolved. `.cursor/rules/agentic-os-core.mdc` uses `globs: **/*`.
 
-This matters because the repo currently has multiple project-like concepts: `work-os/Projects/`, `personal-os/Projects/`, and `bmad-projects/`.
+### ✅ 4. Expand `.gitignore` for All OS User Data
 
-### 3. Fix the Core Cursor Rule Glob
+Resolved. The root `.gitignore` includes ignore rules for private user data across `work-os/`, `career-os/`, `personal-os/`, and `meeting-os/` (while keeping templates tracked).
 
-The rule file `.cursor/rules/agentic-os-core.mdc` uses a glob that may not attach when this repo is opened directly in Cursor.
+### ✅ 5. Untrack Private Runs and Demo Outputs
 
-Recommended change:
+Resolved for mini-BMAD runs: `_mini_bmad/runs/` is gitignored and there are no tracked files under `_mini_bmad/runs/`.
 
-```md
-globs: **/*
-```
+Open question (still optional): whether any example BMAD project (e.g. a demo) should live as a tracked example vs an `examples/` area.
 
-This ensures the core Agentic OS behavior applies throughout the workspace.
+### ⏳ 6. Resolve `BACKLOG.md` vs `INBOX.md`
 
-### 4. Expand `.gitignore` for All OS User Data
+Still an improvement to make.
 
-The root `.gitignore` currently protects many `work-os/` user-data directories, but it does not appear to protect equivalent user data in `career-os/`, `personal-os/`, and `meeting-os/`.
-
-Add ignore rules for private user artifacts such as:
-
-- `career-os/Applications/`
-- `career-os/Impact-Library/`
-- `career-os/Interview-Prep/`
-- `personal-os/Tasks/`
-- `personal-os/Projects/`
-- `personal-os/Knowledge/`
-- `meeting-os/Meetings/`
-- `meeting-os/People/`
-- `meeting-os/Actions/`
-
-Keep templates, examples, docs, and workflow files tracked.
-
-### 5. Untrack Private Runs and Demo Outputs
-
-Some `_mini_bmad/runs/` files appear to be tracked even though that folder is now intended to be private and ignored.
-
-Recommended cleanup:
-
-- Remove tracked mini-BMAD run artifacts from git history going forward with `git rm --cached`.
-- Keep `_mini_bmad/templates/`, `_mini_bmad/README.md`, and `_mini_bmad/AGENTS.md` tracked.
-- Decide whether `bmad-projects/demo-bmad-project/` should remain as a real example or move into an explicit `examples/` area.
-
-### 6. Resolve `BACKLOG.md` vs `INBOX.md`
-
-`work-os/` currently has inconsistent capture terminology. Some docs refer to `BACKLOG.md`; others refer to `INBOX.md`.
-
-Pick one canonical name and update all docs and workflows to match.
-
-Suggested default:
-
-- Use `BACKLOG.md` if the workspace is intended to feel like project/task management.
-- Use `INBOX.md` if the workspace is intended to feel like capture-first GTD.
-
-The important part is consistency so AI agents do not create or read the wrong file.
+At minimum, pick one canonical capture vocabulary for `work-os/` (and ensure the docs + workflows consistently refer to the same file name and concept). Right now, the repo uses both “backlog” and “inbox” terminology across OSes.
 
 ## Secondary Improvements
 
-### Update `README.md`
+### ⏳ Update `README.md`
 
 The root `README.md` should mention:
 
@@ -124,13 +73,13 @@ The root `README.md` should mention:
 - The privacy model
 - The intended relationship between the four OS folders and the BMAD layers
 
-### Update `CONTRIBUTING.md`
+### ⏳ Update `CONTRIBUTING.md`
 
 The current contributing guidance says the repo is markdown-only, but the repo now includes a large BMAD install with code, YAML, skills, and scripts.
 
 Update the contribution guidance to reflect the actual shape of the repo.
 
-### Clarify `agentic-db/`
+### 🟡 Clarify `agentic-db/`
 
 `agentic-db/` is currently useful but isolated.
 
@@ -140,23 +89,24 @@ Choose one of these paths:
 - Integrate it into one or more OS workflows.
 - Move it out of the main workspace if it is not part of the current system.
 
-### Clean Minor Inconsistencies
+### ⏳ Clean Minor Inconsistencies
 
 - Fix the typo in `.cursor/rules/mini-bmad.mdc` that references `bmad run/.mini-bmad/CHANGES.md`.
 - Add missing `.gitkeep` files if `.gitignore` expects them.
 - Rename the `.gitignore` header from `work-os .gitignore` to something repo-wide.
 - Add a root `AGENTS.md` if you want AI agents to have a top-level operating manual before entering a specific OS folder.
 
+### ✅ Document the `AD_HOC/` layer
+
+Resolved. `AD_HOC/` is now described as the “do the work” layer, with `_mini_bmad/` acting as the summary layer (especially for sync into `bmad-projects/`).
+
 ## Suggested Cleanup Order
 
-1. Create root `START-HERE.md`.
-2. Add the "Which Layer Should I Use?" decision table.
-3. Fix `.cursor/rules/agentic-os-core.mdc`.
-4. Expand `.gitignore` for all private OS user data.
-5. Untrack existing private mini-BMAD runs.
-6. Resolve `BACKLOG.md` vs `INBOX.md`.
-7. Update `README.md` and `CONTRIBUTING.md`.
-8. Decide the role of `agentic-db/`.
+1. Resolve `BACKLOG.md` vs `INBOX.md`.
+2. Update `README.md` and `CONTRIBUTING.md`.
+3. Decide (and document) the role of `agentic-db/`.
+4. Clean minor inconsistencies (typos, `.gitkeep`, optional root `AGENTS.md`).
+5. Decide whether `AD_HOC/` is a first-class layer and document it if so.
 
 ## Definition of Done
 

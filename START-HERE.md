@@ -21,6 +21,7 @@ If you’re unsure, start with the decision table below.
 | Personal planning: health, relationships, life admin, finances, personal projects | `personal-os/` | Personal “whole-life” execution system |
 | Meeting prep + notes + decisions + follow-ups | `meeting-os/` | Dedicated meeting capture + action tracking |
 | A major new product/app/business/workflow idea | `bmad-projects/` | Structured ideation + planning workspace (BMAD) |
+| Do one concrete ad-hoc task (draft, analyze, prep) | `AD_HOC/` | Lightweight workspace + predictable folders for “do the work” |
 | Ad-hoc research, meeting planning, presentation outlines, one-off investigations | `_mini_bmad/` | Fast temporary “run” workflow with summaries |
 | I want to share an output publicly (sanitized) | `Published/` | Curated, shareable artifacts live here |
 | I want a database-backed record store | `agentic-db/` | Optional Postgres JSON store (not required) |
@@ -68,6 +69,12 @@ Use a run under `_mini_bmad/runs/...`.
 ```
 
 Mini-bmad runs are private by default and can optionally sync summaries into a BMAD project.
+
+### Ad-hoc task → mini-bmad summary → BMAD course-correct (recommended process)
+
+- Do the hands-on work in `AD_HOC/` (drafts, notes, analysis, meeting artifacts).
+- When you want consolidation (day/week/multi-week) and/or you want to sync into a major BMAD project, create/open a mini-bmad run and use `summarize` / `delta` as the **summary layer**.
+- If the ad-hoc work produced official decisions that change scope or constraints, update the relevant BMAD project so the “source of truth” stays aligned.
 
 ### Track ad-hoc tasks repo-wide (summarize + reset)
 
