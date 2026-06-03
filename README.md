@@ -56,6 +56,16 @@ Each OS works independently. Pick one, pick all four, or mix and match.
 
 See [CURSOR.md](CURSOR.md) for the full setup walkthrough and the natural-language prompts each OS responds to.
 
+## AD_HOC → mini-bmad → BMAD (recommended process)
+
+This repo supports a simple “do the work → summarize → course-correct” loop:
+
+- **Do one concrete task in `AD_HOC/`**: drafts, meeting artifacts, analysis, notes. Keep outcomes private-by-default; publish only curated results to `Published/`.
+- **Summarize with `_mini_bmad/` when needed**: use mini-bmad runs as a **summary layer** (day/week/multi-week) and optionally sync summaries into a major BMAD project.
+- **Course-correct with `bmad-projects/` when decisions change scope**: if ad-hoc work results in official decisions (new constraints, scope changes, strategy shifts), update the BMAD project so the “source of truth” stays aligned.
+
+If you’re unsure where to start, open `START-HERE.md`.
+
 ## Contributing
 
 Found this helpful? Have ideas? Open an issue or PR. Each OS accepts contributions independently.
