@@ -65,10 +65,3 @@ If you build your own agentic OS and want to add it to the collection, open a PR
 ## License
 
 MIT. Use it however you want.
-
----
-
-**Created by Ahmad Elswify** · [LinkedIn](https://www.linkedin.com/in/swify/)
-
-**Contributors:**
-- Yusef Khedr, Software Engineer
