@@ -8,6 +8,7 @@ These files describe specialized workflows the assistant follows for common requ
 |--------|---------------|
 | "Help me set up career-os" | `setup.md` |
 | "Tailor my resume for this job description" | `resume-tailor.md` |
+| "Review / refine / modify my resume" | `resume-review-modify.md` |
 | "Help me prep for this interview" | `interview-coach.md` |
 | "Log this outcome" | `log-outcome.md` |
 

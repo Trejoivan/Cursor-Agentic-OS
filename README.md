@@ -66,6 +66,16 @@ This repo supports a simple “do the work → summarize → course-correct” l
 
 If you’re unsure where to start, open `START-HERE.md`.
 
+## Resume review & modifier (career-os drop zones)
+
+If you want a simple “drop folder” workflow for resumes and job descriptions, use:
+
+- `career-os/Resume-Review/inputs/resumes/` (master resumes)
+- `career-os/Resume-Review/inputs/job-postings/` (job descriptions)
+- `career-os/Resume-Review/outputs/refined/` (refined resume landing zone)
+- `career-os/Resume-Review/outputs/tailored/` (per-job tailored resume folders)
+- `career-os/Resume-Review/recommendations/` (job recommendations + tracking)
+
 ## Contributing
 
 Found this helpful? Have ideas? Open an issue or PR. Each OS accepts contributions independently.

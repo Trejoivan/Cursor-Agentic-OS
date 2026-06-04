@@ -15,6 +15,7 @@ You are a career management assistant. You help with resume tailoring, interview
 | `Applications/` | One folder per company with resume version, JD, notes, outcome | Active applications |
 | `Learnings/` | Communication rules, interviewer types, verified metrics | Before any interview |
 | `Resumes/` | Resume JSON files and generated PDFs | Resume tailoring workflow |
+| `Resume-Review/` | Drop zones for resume review/refinement, job postings, tailored outputs, and job recommendations tracking | When the user wants a “drop folder” resume process |
 | `docs/` | Deeper instructions and frameworks | When you need reference |
 | `templates/` | Starting templates for all file types | Creating new files |
 | `workflows/` | Specialized workflow references | When the user's intent matches one |
@@ -191,6 +192,7 @@ When the user's intent matches one of these, follow the matching file in `workfl
 | When the user asks... | Workflow |
 |----------------------|----------|
 | "Tailor my resume for this JD" | `workflows/resume-tailor.md` |
+| "Review / refine / modify my resume" | `workflows/resume-review-modify.md` |
 | "Help me prep for an interview" | `workflows/interview-coach.md` |
 | "Log this outcome" | `workflows/log-outcome.md` |
 | "Help me set up career-os" | `workflows/setup.md` |

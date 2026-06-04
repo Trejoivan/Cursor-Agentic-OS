@@ -26,6 +26,16 @@ career-os/Applications/
 career-os/Learnings/
 career-os/Resumes/
 
+# Resume review/modifier workspace (private by default; keep scaffold tracked)
+career-os/Resume-Review/**
+!career-os/Resume-Review/
+!career-os/Resume-Review/**/
+!career-os/Resume-Review/README.md
+!career-os/Resume-Review/**/README.md
+!career-os/Resume-Review/templates/
+!career-os/Resume-Review/templates/**/
+!career-os/Resume-Review/templates/**/*.md
+
 # ---- personal-os (private user data) ----
 personal-os/INBOX.md
 personal-os/Tasks/
