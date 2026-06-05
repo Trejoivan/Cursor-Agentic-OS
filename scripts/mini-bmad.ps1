@@ -16,7 +16,7 @@ updates into bmad-projects/<slug>/_mini-bmad-updates/.
 [CmdletBinding()]
 param(
   [Parameter(Position = 0)]
-  [ValidateSet('new', 'open', 'list', 'status', 'checkpoint', 'link', 'unlink', 'log', 'delta', 'summarize')]
+  [ValidateSet('new', 'open', 'list', 'status', 'checkpoint', 'link', 'unlink', 'log', 'delta', 'brief', 'weekly', 'summarize')]
   [string]$Command = 'list',
 
   [Parameter(Position = 1)]
@@ -295,6 +295,107 @@ function Ensure-RunScaffold {
         '## Next steps',
         '',
         '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'summary\BMAD-DAILY-BRIEF.md')
+      lines = @(
+        '---',
+        'type: bmad-distillate',
+        'distillate_kind: daily-brief',
+        ('created: "' + (Get-Date).ToString('yyyy-MM-dd') + '"'),
+        'downstream_consumer: "bmad-correct-course | bmad-edit-prd | bmad-sprint-status | bmad-help"',
+        'sources:',
+        '  - "NOTES.md"',
+        'linked_project: "none"',
+        'token_estimate: 800',
+        'parts: 1',
+        '---',
+        '',
+        ('# BMAD Daily Brief - ' + $DisplayName),
+        '',
+        'This file is intended to be a **single BMAD-ingestable context update**.',
+        'Keep it dense and decision-relevant so it can drive course-correction, scope changes, and confirmations.',
+        '',
+        '## Change summary (since last brief)',
+        '- ',
+        '',
+        '## Current objective',
+        '- ',
+        '',
+        '## Confirmed facts / non-negotiables',
+        '- ',
+        '',
+        '## Decisions & confirmations (include rationale)',
+        '- ',
+        '',
+        '## Scope delta',
+        '- Added:',
+        '  - ',
+        '- Removed:',
+        '  - ',
+        '- Deferred:',
+        '  - ',
+        '',
+        '## New constraints',
+        '- ',
+        '',
+        '## Impact notes (for course-correct)',
+        '- PRD: ',
+        '- Epics/Stories: ',
+        '- Architecture: ',
+        '- UX: ',
+        '',
+        '## Open questions (ordered by what blocks progress)',
+        '1. ',
+        '2. ',
+        '',
+        '## Risks & unknowns',
+        '- ',
+        '',
+        '## Evidence / links',
+        '- ',
+        '',
+        '## Next actions',
+        '- ',
+        ''
+      )
+    },
+    @{
+      path = (Join-Path $RunRoot 'summary\AGENT-ASSIST.md')
+      lines = @(
+        ('# Agent assist - ' + $DisplayName),
+        '',
+        'Use this file as a quick lookup for which BMAD role agent to ask for help when drafting briefs.',
+        '',
+        '## Daily brief help',
+        '',
+        '- Tech writer (Paige) -> bmad-agent-tech-writer',
+        '  - Ask: "Paige: tighten summary/BMAD-DAILY-BRIEF.md using NOTES.md. Keep headings; dense bullets; add questions for missing fields."',
+        '- Technical PM (John) -> bmad-agent-pm',
+        '  - Ask: "John: convert fuzzy bullets into confirmations, explicit scope delta, and prioritized open questions."',
+        '- Solution/architecture (Winston) -> bmad-agent-architect',
+        '  - Ask: "Winston: produce impact notes for PRD/Epics/Architecture/UX + risky inconsistencies."',
+        '- UX (Sally) -> bmad-agent-ux-designer',
+        '  - Ask: "Sally: improve only UX-related parts (impacts, edge cases, missing flows/confirmations). Keep headings and keep it dense."',
+        '- Implementation readiness (Amelia) -> bmad-agent-dev',
+        '  - Ask: "Amelia: sanity-check for implementation readiness. Make next actions concrete and flag AC/dependency gaps."',
+        '',
+        '## Weekly brief help',
+        '',
+        '- Paige: compress week into a tight narrative + net diffs',
+        '- John: ensure scope/constraints/decisions are explicit and actionable',
+        '- Winston: ensure impact notes are complete and consistent with trade-offs',
+        '- Caravaggio (presentation) -> bmad-cis-agent-presentation-master',
+        '  - Ask: "Caravaggio: turn the weekly brief into a 5-8 slide outline with key messages and stakeholder asks."',
+        '- Sophia (storyteller) -> bmad-cis-agent-storyteller',
+        '  - Ask: "Sophia: rewrite the weekly one-paragraph summary to be crisp and compelling without changing the facts."',
+        '',
+        'Repo lookup docs:',
+        '',
+        '- _mini_bmad/AGENT-SUPPORT.md',
+        '- _mini_bmad/templates/bmad-summary-assist-prompts.md',
         ''
       )
     },
@@ -741,6 +842,226 @@ function Summarize-Run {
   }
 }
 
+function Ensure-DailyBriefFile {
+  param(
+    [Parameter(Mandatory = $true)][string]$RunRoot,
+    [Parameter(Mandatory = $true)]$State
+  )
+
+  $path = Join-Path $RunRoot 'summary\BMAD-DAILY-BRIEF.md'
+  if (Test-Path -LiteralPath $path) { return $path }
+
+  Ensure-Dir -Path (Join-Path $RunRoot 'summary')
+  $created = (Get-Date).ToString('yyyy-MM-dd')
+
+  $lines = @(
+    '---',
+    'type: bmad-distillate',
+    'distillate_kind: daily-brief',
+    ('created: "' + $created + '"'),
+    'downstream_consumer: "bmad-correct-course | bmad-edit-prd | bmad-sprint-status | bmad-help"',
+    'sources:',
+    '  - "NOTES.md"',
+    'linked_project: "none"',
+    'token_estimate: 800',
+    'parts: 1',
+    '---',
+    '',
+    ('# BMAD Daily Brief - ' + $State.name),
+    '',
+    '## Change summary (since last brief)',
+    '- ',
+    '',
+    '## Current objective',
+    '- ',
+    '',
+    '## Confirmed facts / non-negotiables',
+    '- ',
+    '',
+    '## Decisions & confirmations (include rationale)',
+    '- ',
+    '',
+    '## Scope delta',
+    '- Added:',
+    '  - ',
+    '- Removed:',
+    '  - ',
+    '- Deferred:',
+    '  - ',
+    '',
+    '## New constraints',
+    '- ',
+    '',
+    '## Impact notes (for course-correct)',
+    '- PRD: ',
+    '- Epics/Stories: ',
+    '- Architecture: ',
+    '- UX: ',
+    '',
+    '## Open questions (ordered by what blocks progress)',
+    '1. ',
+    '2. ',
+    '',
+    '## Risks & unknowns',
+    '- ',
+    '',
+    '## Evidence / links',
+    '- ',
+    '',
+    '## Next actions',
+    '- ',
+    ''
+  )
+
+  Set-Content -LiteralPath $path -Encoding utf8 -Value ($lines -join [Environment]::NewLine)
+  return $path
+}
+
+function Brief-Run {
+  param(
+    [Parameter(Mandatory = $true)][string]$RepoRoot,
+    [Parameter(Mandatory = $true)][string]$RunRoot
+  )
+
+  $statePath = Get-StatePath -RunRoot $RunRoot
+  $state = Read-Json -Path $statePath
+  if ($null -eq $state) { throw ("State missing at " + $statePath) }
+
+  $summaryDir = Join-Path $RunRoot '_mini-summary'
+  Ensure-Dir -Path $summaryDir
+
+  $briefSource = Ensure-DailyBriefFile -RunRoot $RunRoot -State $state
+  $briefDest = Join-Path $summaryDir 'BMAD-DAILY-BRIEF.md'
+
+  Copy-Item -LiteralPath $briefSource -Destination $briefDest -Force
+
+  $now = (Get-Date).ToString('o')
+  $state.updatedAt = $now
+  Write-Json -Path $statePath -Object $state
+
+  $linked = @()
+  if ($state.PSObject.Properties.Name -contains 'linkedProjects') {
+    $linked = @($state.linkedProjects | ForEach-Object { "$_" } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+  }
+
+  return [ordered]@{
+    runRoot = $RunRoot
+    brief = $briefDest
+    linkedProjects = $linked
+  }
+}
+
+function Ensure-WeeklyBriefFile {
+  param(
+    [Parameter(Mandatory = $true)][string]$RunRoot,
+    [Parameter(Mandatory = $true)]$State
+  )
+
+  $path = Join-Path $RunRoot 'summary\BMAD-WEEKLY-BRIEF.md'
+  if (Test-Path -LiteralPath $path) { return $path }
+
+  Ensure-Dir -Path (Join-Path $RunRoot 'summary')
+
+  $created = (Get-Date).ToString('yyyy-MM-dd')
+  $start = (Get-Date).AddDays(-6).ToString('yyyy-MM-dd')
+  $end = (Get-Date).ToString('yyyy-MM-dd')
+
+  $lines = @(
+    '---',
+    'type: bmad-distillate',
+    'distillate_kind: weekly-brief',
+    ('created: "' + $created + '"'),
+    'range:',
+    ('  start: "' + $start + '"'),
+    ('  end: "' + $end + '"'),
+    'downstream_consumer: "bmad-correct-course | bmad-edit-prd | bmad-sprint-status | bmad-help"',
+    'sources:',
+    '  - "summary/BMAD-DAILY-BRIEF.md"',
+    'linked_project: "none"',
+    'token_estimate: 1200',
+    'parts: 1',
+    '---',
+    '',
+    ('# BMAD Weekly Brief - ' + $State.name),
+    '',
+    '## Week-in-one-paragraph (tight, decision-relevant)',
+    '- ',
+    '',
+    '## Net changes (the "diff" for BMAD)',
+    '- New confirmations:',
+    '  - ',
+    '- Scope changes:',
+    '  - Added: ',
+    '  - Removed: ',
+    '  - Deferred: ',
+    '- Constraint changes:',
+    '  - ',
+    '',
+    '## Key takeaways (compressed)',
+    '- ',
+    '',
+    '## Decisions & rationale (only the ones that matter going forward)',
+    '- ',
+    '',
+    '## Impact notes (for course-correct)',
+    '- PRD: ',
+    '- Epics/Stories: ',
+    '- Architecture: ',
+    '- UX: ',
+    '',
+    '## Open questions (top blockers)',
+    '1. ',
+    '2. ',
+    '',
+    '## Risks & unknowns (with mitigation owners)',
+    '- ',
+    '',
+    '## Next-week focus (what BMAD should optimize for)',
+    '- ',
+    '',
+    '## Evidence / links',
+    '- ',
+    ''
+  )
+
+  Set-Content -LiteralPath $path -Encoding utf8 -Value ($lines -join [Environment]::NewLine)
+  return $path
+}
+
+function Weekly-Run {
+  param(
+    [Parameter(Mandatory = $true)][string]$RepoRoot,
+    [Parameter(Mandatory = $true)][string]$RunRoot
+  )
+
+  $statePath = Get-StatePath -RunRoot $RunRoot
+  $state = Read-Json -Path $statePath
+  if ($null -eq $state) { throw ("State missing at " + $statePath) }
+
+  $summaryDir = Join-Path $RunRoot '_mini-summary'
+  Ensure-Dir -Path $summaryDir
+
+  $briefSource = Ensure-WeeklyBriefFile -RunRoot $RunRoot -State $state
+  $briefDest = Join-Path $summaryDir 'BMAD-WEEKLY-BRIEF.md'
+
+  Copy-Item -LiteralPath $briefSource -Destination $briefDest -Force
+
+  $now = (Get-Date).ToString('o')
+  $state.updatedAt = $now
+  Write-Json -Path $statePath -Object $state
+
+  $linked = @()
+  if ($state.PSObject.Properties.Name -contains 'linkedProjects') {
+    $linked = @($state.linkedProjects | ForEach-Object { "$_" } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+  }
+
+  return [ordered]@{
+    runRoot = $RunRoot
+    weeklyBrief = $briefDest
+    linkedProjects = $linked
+  }
+}
+
 function Sync-ToBmadProjects {
   param(
     [Parameter(Mandatory = $true)][string]$RepoRoot,
@@ -930,6 +1251,32 @@ switch ($Command) {
     }
     $runId = Split-Path -Leaf $runRoot
     Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad delta" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'delta', 'reset')
+    $result
+  }
+
+  'brief' {
+    if ([string]::IsNullOrWhiteSpace($Name)) { throw "Name (slug or display name) is required for 'brief'." }
+    $slug = ConvertTo-Slug -Text $Name
+    $runRoot = Ensure-Run -RepoRoot $repoRoot -Slug $slug -DisplayName $Name -AllowExisting
+    $result = Brief-Run -RepoRoot $repoRoot -RunRoot $runRoot
+    if ($Sync -and $result.linkedProjects.Count -gt 0) {
+      Sync-ToBmadProjects -RepoRoot $repoRoot -RunRoot $runRoot -SummaryPackPath $result.brief -LinkedProjects $result.linkedProjects
+    }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad brief" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'brief')
+    $result
+  }
+
+  'weekly' {
+    if ([string]::IsNullOrWhiteSpace($Name)) { throw "Name (slug or display name) is required for 'weekly'." }
+    $slug = ConvertTo-Slug -Text $Name
+    $runRoot = Ensure-Run -RepoRoot $repoRoot -Slug $slug -DisplayName $Name -AllowExisting
+    $result = Weekly-Run -RepoRoot $repoRoot -RunRoot $runRoot
+    if ($Sync -and $result.linkedProjects.Count -gt 0) {
+      Sync-ToBmadProjects -RepoRoot $repoRoot -RunRoot $runRoot -SummaryPackPath $result.weeklyBrief -LinkedProjects $result.linkedProjects
+    }
+    $runId = Split-Path -Leaf $runRoot
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad weekly" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'weekly')
     $result
   }
 }

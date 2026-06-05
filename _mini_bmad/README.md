@@ -71,6 +71,7 @@ Open the run folder and start with:
 
 - `START-HERE.md`
 - `NOTES.md`
+- `summary/BMAD-DAILY-BRIEF.md` (single-file BMAD update)
 
 ### Default run folders
 
@@ -91,4 +92,48 @@ Outputs:
 - Consolidated “summary pack”: `_mini_bmad/runs/<run>/_mini-summary/SUMMARY-PACK.md`
 - Very short delta: `_mini_bmad/runs/<run>/_mini-summary/DELTA-SINCE-LAST.md`
 - Sync payloads into BMAD projects: `bmad-projects/<slug>/_mini-bmad-updates/<run-id>.md`
+
+## Single-file format for feeding BMAD daily (recommended)
+
+If you want **one file** BMAD can ingest for course-correction, scope changes, confirmations, and new constraints, use:
+
+- `summary/BMAD-DAILY-BRIEF.md`
+
+It’s intentionally written in a **distillate-style** (dense bullets + light YAML header) so it can serve as:
+
+- a “what changed since last time” delta
+- a decision/confirmation log
+- an impact hint list (PRD/Epics/Architecture/UX)
+- a compact set of open questions and next actions
+
+### Daily loop
+
+- Do the work (notes/artifacts) inside the run.
+- Update `summary/BMAD-DAILY-BRIEF.md` during/after the session.
+- When you want to push the update into a major BMAD project, link + sync:
+
+```powershell
+.\scripts\mini-bmad.ps1 link "<run-slug>" -Project "<bmad-project-slug>"
+.\scripts\mini-bmad.ps1 brief "<run-slug>" -Sync
+```
+
+Use `summarize -Sync` when you want the full consolidated pack synced (heavier).
+
+## Single-file format for feeding BMAD weekly (recommended)
+
+For a weekly consolidation that BMAD can use to course-correct (net scope/constraint changes + impacts + next-week focus), use:
+
+- `summary/BMAD-WEEKLY-BRIEF.md`
+
+### Weekly loop (recommended)
+
+- Keep **daily runs** for daily work + daily briefs.
+- Create a **weekly run** (one per week) for consolidation, then sync just the weekly brief:
+
+```powershell
+.\scripts\mini-bmad.ps1 new "Weekly brief - <week label>"
+# edit summary/BMAD-WEEKLY-BRIEF.md inside that run
+.\scripts\mini-bmad.ps1 link "<weekly-run-slug>" -Project "<bmad-project-slug>"
+.\scripts\mini-bmad.ps1 weekly "<weekly-run-slug>" -Sync
+```
 

@@ -24,6 +24,9 @@ Use `_mini_bmad/` for quick, one-off work that should still be **capturable, res
    - Use the scaffold folders as needed:
      - `meeting/`, `prep/`, `analysis/`, `refinements/`, `summary/`, `links/`, `notes/`, `artifacts/`
      - `_promote-templates/` to save `.md` / `.txt` files as reusable templates on `summarize`
+   - For help writing better briefs, see:
+     - `_mini_bmad/AGENT-SUPPORT.md`
+     - `_mini_bmad/templates/bmad-summary-assist-prompts.md`
 
 3. When ready, consolidate:
 
