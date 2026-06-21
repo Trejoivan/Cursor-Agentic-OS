@@ -17,6 +17,15 @@ Directives may optionally take parameters using `=` (e.g. `/smd=AD_HOC/workspace
   - If user specifies a target like `/smd=relative/path.md`, save there instead.
   - In the chat response, include the saved file’s relative path.
 
+- **`/aud` (audience)**: Tailor the summary/output for a specific audience.
+  - Supported values:
+    - `/aud=business` (business stakeholders: outcomes, impact, timeline, risks, asks; minimal jargon)
+    - `/aud=techlead` (technical leadership: architecture/approach, tradeoffs, risks, resourcing, rollout plan)
+    - `/aud=simple` (plain language: explain like I’m new; define acronyms; short sentences)
+    - `/aud=exec` (executive: 3–5 bullets, decisions needed, top risks, ETA)
+  - If no value is provided, infer from context; otherwise keep default “balanced”.
+  - Applies to: normal responses, `/sum`, `/rag`, `/email`, and file output when paired with `/smd`.
+
 - **`/fmt` (format-output)**: Force the output format for the main deliverable.
   - Supported values: `/fmt=bullets` (default), `/fmt=checklist`, `/fmt=steps`, `/fmt=template`.
   - If no value is provided, assume `/fmt=bullets`.

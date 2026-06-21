@@ -50,11 +50,15 @@ Summarize these notes and give me next steps /sum /next
 Extract action items and save them /todo /smd
 Write a concise status email to stakeholders based on this update /email=status /smd
 Turn this into step-by-step instructions /fmt=steps /smd
+Summarize this incident for business stakeholders /sum /aud=business
+Summarize this issue for technical leadership /sum /aud=techlead
+Explain this in simple terms /aud=simple
 ```
 
 Supported directives:
 
 - **`/smd`**: save the main output as a `.md` file (defaults under `AD_HOC/workspace/outputs/`)
+- **`/aud`**: choose an audience/style (e.g. `/aud=business`, `/aud=techlead`, `/aud=simple`, `/aud=exec`)
 - **`/fmt`**: force the output format (e.g. `/fmt=bullets`, `/fmt=checklist`, `/fmt=steps`)
 - **`/email`**: draft the output as an email (e.g. `/email=follow-up`, `/email=request`, `/email=status`)
 - **`/cag`**: create a meeting agenda file (defaults under `meeting-os/Meetings/.../AGENDA.md`)
