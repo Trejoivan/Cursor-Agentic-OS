@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="820" viewBox="0 0 820 820" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="820" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B66A7A" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#B08A57" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="120" y1="60" x2="520" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B08A57" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#B66A7A" stop-opacity="0.20"/>
+    </linearGradient>
+    <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.8"/>
+    </filter>
+  </defs>
+
+  <path d="M55 765C180 700 268 600 300 465C329 344 420 257 545 220C652 189 714 120 765 55" stroke="url(#g1)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M78 742C208 682 303 579 345 442C378 336 470 257 578 232C667 211 723 150 742 78" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Leaves -->
+  <g filter="url(#blur)" opacity="0.95">
+    <path d="M168 640C220 600 238 540 244 495C197 526 160 575 145 624C140 640 153 651 168 640Z" fill="url(#g2)"/>
+    <path d="M238 565C300 530 350 470 378 418C320 438 262 486 228 540C219 554 224 575 238 565Z" fill="url(#g2)"/>
+    <path d="M340 470C406 442 474 380 518 318C450 330 382 378 330 438C320 451 325 478 340 470Z" fill="url(#g2)"/>
+    <path d="M454 360C520 332 598 270 650 206C575 212 500 258 440 330C429 343 437 368 454 360Z" fill="url(#g2)"/>
+  </g>
+
+  <!-- Simple blossoms -->
+  <g opacity="0.95">
+    <g transform="translate(210 610)">
+      <circle r="7" fill="#B66A7A" fill-opacity="0.35"/>
+      <path d="M0 -18C8 -18 14 -12 14 -4C14 4 8 10 0 10C-8 10 -14 4 -14 -4C-14 -12 -8 -18 0 -18Z" fill="#FFF7F6" fill-opacity="0.65"/>
+      <path d="M0 -14C6 -14 10 -10 10 -4C10 2 6 6 0 6C-6 6 -10 2 -10 -4C-10 -10 -6 -14 0 -14Z" fill="#B66A7A" fill-opacity="0.18"/>
+    </g>
+    <g transform="translate(330 500)">
+      <circle r="6" fill="#B08A57" fill-opacity="0.30"/>
+      <path d="M0 -16C7 -16 12 -11 12 -4C12 3 7 8 0 8C-7 8 -12 3 -12 -4C-12 -11 -7 -16 0 -16Z" fill="#FFF7F6" fill-opacity="0.65"/>
+      <path d="M0 -12C5 -12 8 -9 8 -4C8 1 5 4 0 4C-5 4 -8 1 -8 -4C-8 -9 -5 -12 0 -12Z" fill="#B08A57" fill-opacity="0.18"/>
+    </g>
+    <g transform="translate(480 360)">
+      <circle r="6" fill="#B66A7A" fill-opacity="0.28"/>
+      <path d="M0 -16C7 -16 12 -11 12 -4C12 3 7 8 0 8C-7 8 -12 3 -12 -4C-12 -11 -7 -16 0 -16Z" fill="#FFF7F6" fill-opacity="0.65"/>
+      <path d="M0 -12C5 -12 8 -9 8 -4C8 1 5 4 0 4C-5 4 -8 1 -8 -4C-8 -9 -5 -12 0 -12Z" fill="#B66A7A" fill-opacity="0.16"/>
+    </g>
+  </g>
+</svg>

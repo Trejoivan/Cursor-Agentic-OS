@@ -56,6 +56,21 @@ Each OS works independently. Pick one, pick all four, or mix and match.
 
 See [CURSOR.md](CURSOR.md) for the full setup walkthrough and the natural-language prompts each OS responds to.
 
+## Convert files to Markdown (MarkItDown)
+
+This repo defaults to a **Markdown-first ingestion** approach: if you want to interpret PDFs/Office docs/binary formats, convert them to Markdown first to preserve structure and reduce token usage. Conversions are written under `.cache/` (gitignored), then you analyze the generated `.md`.
+
+To convert mixed files (PDF/DOCX/PPTX/XLSX/HTML/images/zip/etc) into Markdown for easier AI processing, use:
+
+- `.\scripts\markitdown.ps1 install`
+- `.\scripts\markitdown.ps1 convert -Path ".\path\to\file-or-folder" -OutDir ".\.cache\md-out" -Recurse`
+- `.\scripts\markitdown.ps1 bundle -Path ".\path\to\folder" -Out ".\out\bundle.md" -Recurse`
+
+For a fully self-contained conversion environment (including ffmpeg/exiftool), you can build and run via Docker:
+
+- `.\scripts\markitdown.ps1 docker-build`
+- Add `-UseDocker` to `convert` / `bundle`
+
 ## AD_HOC → mini-bmad → BMAD (recommended process)
 
 This repo supports a simple “do the work → summarize → course-correct” loop:

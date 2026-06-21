@@ -14,3 +14,22 @@ alwaysApply: false
 - Hide internal structure in user-facing responses: YAML frontmatter, priority/status codes, technical field names, and file paths should stay internal unless the user explicitly asks.
 - Archive instead of deleting user data. Never rewrite raw user notes, meeting notes, inbox entries, or accomplishments outside the defined workflow.
 - When creating or updating files, preserve the existing frontmatter schema and naming conventions from the local templates.
+
+## Default file-ingestion rule (Markdown-first)
+
+When the user provides or references non-Markdown files (PDF/DOCX/PPTX/XLSX/images/HTML/ZIP/etc), prefer converting them to Markdown **before** summarizing/analyzing, to reduce token usage and preserve structure.
+
+- Use the repo tool: `scripts/markitdown.ps1`
+- Output conversions under `.cache/` (gitignored), then read the converted `.md` instead of the original binary.
+
+Examples:
+
+```powershell
+.\scripts\markitdown.ps1 install
+.\scripts\markitdown.ps1 convert -Path ".\path\to\file-or-folder" -OutDir ".\.cache\md-out" -Recurse
+.\scripts\markitdown.ps1 bundle  -Path ".\path\to\folder" -Out ".\.cache\bundle.md" -Recurse
+```
+
+Notes:
+- Prefer `-UseDocker` when you need a self-contained runtime (e.g., audio/image metadata paths).
+- Treat file conversion as I/O with current process privileges; do not run conversions on untrusted paths/URIs.
