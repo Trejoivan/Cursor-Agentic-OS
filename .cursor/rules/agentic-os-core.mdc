@@ -8,7 +8,7 @@ alwaysApply: false
 
 - Treat each OS folder's `AGENTS.md` as the primary operating manual. Read it first whenever you start working inside an OS folder.
 - Specialized workflows live in `<os>/workflows/`. When the user's request matches a workflow file (for example "process my backlog" → `workflows/backlog-processor.md`), follow that file's steps.
-- Cursor responds to natural-language intents like "plan my day", "process my inbox", "tailor my resume". Do not surface or invent slash commands.
+- Cursor responds to natural-language intents like "plan my day", "process my inbox", "tailor my resume". Do not surface or invent slash commands for workflows. (Exception: user-supplied end-of-prompt output directives like `/smd` are allowed.)
 - Load context progressively. Read the relevant `AGENTS.md` first, then only the docs, workflow files, templates, tasks, projects, notes, or knowledge files needed for the request.
 - Keep normal usage within markdown, JSON, and personal/work management files. Only edit the agentic-os harness, templates, docs, workflows, or `.cursor/rules` when the user explicitly asks to customize the system.
 - Hide internal structure in user-facing responses: YAML frontmatter, priority/status codes, technical field names, and file paths should stay internal unless the user explicitly asks.

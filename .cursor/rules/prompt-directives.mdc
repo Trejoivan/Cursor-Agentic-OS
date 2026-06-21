@@ -1,0 +1,59 @@
+---
+description: End-of-prompt output directives (/smd, /cag, /rag, ...)
+globs: **/*
+alwaysApply: true
+---
+
+# Prompt suffix directives (optional)
+
+If the user ends a message with one or more **directives** (tokens starting with `/`), apply them in the same response (no follow-up prompt needed). Directives may be chained (e.g. `… /rag /smd`). Remove directives from the “content to process” before performing the task.
+
+Directives may optionally take parameters using `=` (e.g. `/smd=AD_HOC/workspace/outputs/my-file.md`).
+
+## Supported directives
+
+- **`/smd` (save-markdown)**: Save the primary deliverable as a Markdown file.
+  - Default location: `AD_HOC/workspace/outputs/<date>-<slug>.md` (create folders if needed; fine if gitignored).
+  - If user specifies a target like `/smd=relative/path.md`, save there instead.
+  - In the chat response, include the saved file’s relative path.
+
+- **`/fmt` (format-output)**: Force the output format for the main deliverable.
+  - Supported values: `/fmt=bullets` (default), `/fmt=checklist`, `/fmt=steps`, `/fmt=template`.
+  - If no value is provided, assume `/fmt=bullets`.
+  - If `/smd` is present, apply the same format inside the saved file.
+
+- **`/email` (draft-email)**: Draft the deliverable as an email (subject + body).
+  - Default: concise, professional, plain language.
+  - If `/email=<type>` is provided, tailor tone/structure. Recommended types:
+    - `follow-up` (meeting follow-up)
+    - `request` (ask for info/approval)
+    - `status` (status update)
+    - `intro` (introduction)
+  - If `/smd` is present, save the email draft as Markdown.
+
+- **`/cag` (create-agenda)**: Create a meeting agenda Markdown file (title, purpose, attendees, topics, timeboxes, decisions needed, pre-reads).
+  - Default location: `meeting-os/Meetings/<date>-<slug>/AGENDA.md`
+  - In the chat response, include the saved file’s relative path.
+
+- **`/rag` (review-as-agent)**: After completing the main task, add a short “agent review” pass:
+  - identify gaps/risks, missing assumptions, next steps, and (if applicable) a quick checklist.
+
+- **`/sum` (tight-summary)**: Force a concise, high-signal summary format.
+  - Default format: `## Summary` (3–7 bullets) + `## Action items` (if any) + `## Open questions` (if any).
+
+- **`/todo` (action-items)**: Extract concrete action items (owner + due date if present) and present them as a checklist.
+  - If `/smd` is present, include the checklist in the saved file.
+  - If `/smd` is not present, also save a separate file by default: `AD_HOC/workspace/outputs/<date>-<slug>.action-items.md`.
+
+- **`/next` (next-steps)**: End the response with 3–8 next steps, ordered.
+
+- **`/tlog` (task-ledger-log)**: Log a one-line completion note to the repo-local task ledger (`scripts/task-ledger.ps1 log`).
+  - If user specifies `/tlog=...`, use that string.
+  - Otherwise, derive a short “what I did” line from the result.
+
+## Behavior rules
+
+- If directives conflict, prefer writing files over just printing text.
+- Never create or modify files outside repo root.
+- Do not run file conversions or fetch remote URLs unless the user explicitly asked.
+- If `/email` is present, prioritize the email draft as the “primary deliverable” for `/smd` unless the user explicitly requests separate files.

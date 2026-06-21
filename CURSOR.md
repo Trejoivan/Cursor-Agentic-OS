@@ -37,6 +37,33 @@ Specialized workflows live in `<os>/workflows/`. When you ask something like "pr
 
 There are no slash commands. Cursor recognizes natural-language intents directly.
 
+## Optional prompt suffix directives (quality-of-life)
+
+In addition to natural language, you can optionally add **end-of-prompt directives** to tell the agent what *kind* of output you want, without sending a second prompt. These are not “workflows” — they’re post-processing/output hints.
+
+Examples:
+
+```text
+Draft an agenda for my vendor call tomorrow /cag /smd
+Summarize this PDF and extract action items /rag /smd
+Summarize these notes and give me next steps /sum /next
+Extract action items and save them /todo /smd
+Write a concise status email to stakeholders based on this update /email=status /smd
+Turn this into step-by-step instructions /fmt=steps /smd
+```
+
+Supported directives:
+
+- **`/smd`**: save the main output as a `.md` file (defaults under `AD_HOC/workspace/outputs/`)
+- **`/fmt`**: force the output format (e.g. `/fmt=bullets`, `/fmt=checklist`, `/fmt=steps`)
+- **`/email`**: draft the output as an email (e.g. `/email=follow-up`, `/email=request`, `/email=status`)
+- **`/cag`**: create a meeting agenda file (defaults under `meeting-os/Meetings/.../AGENDA.md`)
+- **`/rag`**: add a short “review as agent” pass (gaps, risks, next steps)
+- **`/sum`**: force a tight summary format (short bullets, action items, open questions)
+- **`/todo`**: extract action items as a checklist (and save alongside if not already saving)
+- **`/next`**: end with ordered next steps
+- **`/tlog`**: log a one-line completion note to `scripts/task-ledger.ps1`
+
 ## Common Prompts by OS
 
 ### work-os
