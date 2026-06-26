@@ -6,6 +6,8 @@ Guide the user through setting up their meeting management system. About 3 minut
 
 Check if `Meetings/`, `Decisions/`, `Actions/`, and `People/` exist. If they do, offer to reconfigure rather than starting over.
 
+Also check if `AD_HOC/Meetings/` exists for scratch/prep artifacts (prep docs, draft agendas). If it does not exist, offer to create it.
+
 ## The Conversation (2 rounds)
 
 1. **Explain the system**
@@ -21,6 +23,7 @@ Check if `Meetings/`, `Decisions/`, `Actions/`, and `People/` exist. If they do,
 Create:
 
 - `Meetings/`, `Decisions/`, `Actions/`, `People/` directories
+- `AD_HOC/Meetings/prep/` and `AD_HOC/Meetings/agendas/` (scratch space)
 - If they named frequent contacts, create starter `People/` files for those names
 
 ## Welcome Message

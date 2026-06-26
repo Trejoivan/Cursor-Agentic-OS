@@ -17,6 +17,24 @@ Directives may optionally take parameters using `=` (e.g. `/smd=AD_HOC/workspace
   - If user specifies a target like `/smd=relative/path.md`, save there instead.
   - In the chat response, include the saved file’s relative path.
 
+- **`/tsum` (transcript-summary)**: When summarizing a meeting transcript from `AD_HOC/workspace/meeting/transcripts/`:
+  - Save the summary to `AD_HOC/workspace/meeting/transcript-summaries/` (use the same base name, but end with `- summary.md`).
+  - Then **move** the transcript into `AD_HOC/workspace/meeting/transcript_done/` so the transcripts folder stays an “inbox”.
+  - “Move” means: copy the file into `transcript_done/`, then remove it from `transcripts/` (do not lose content).
+
+- **`/bmadprep` (bmad-ingest-format)**: Produce a BMAD-ingest-friendly summary format and archive it.
+  - Output format (Markdown headings):
+    - `## Context`
+    - `## What happened (summary)`
+    - `## Decisions`
+    - `## Action items`
+    - `## Risks / blockers`
+    - `## Open questions`
+    - `## Notes for BMAD` (assumptions, constraints, terminology)
+  - Save the BMAD-ready output to `AD_HOC/workspace/meeting/archive-summaries/` (default name: `YYYY-MM-DD - <topic> - bmad-prep.md` unless user overrides with `/smd=...`).
+  - Also copy the BMAD-ready output into `_mini_bmad/bmad_prep/pending/` so it’s ready to sync into a BMAD project.
+  - If you used one or more source summaries from `AD_HOC/workspace/meeting/transcript-summaries/`, **move** those source summary files into `archive-summaries/` as well (copy then remove), to prevent repeating BMAD prep.
+
 - **`/aud` (audience)**: Tailor the summary/output for a specific audience.
   - Supported values:
     - `/aud=business` (business stakeholders: outcomes, impact, timeline, risks, asks; minimal jargon)
@@ -41,7 +59,7 @@ Directives may optionally take parameters using `=` (e.g. `/smd=AD_HOC/workspace
   - If `/smd` is present, save the email draft as Markdown.
 
 - **`/cag` (create-agenda)**: Create a meeting agenda Markdown file (title, purpose, attendees, topics, timeboxes, decisions needed, pre-reads).
-  - Default location: `meeting-os/Meetings/<date>-<slug>/AGENDA.md`
+  - Default location: `AD_HOC/Meetings/Meetings/<date>-<slug>.agenda.md`
   - In the chat response, include the saved file’s relative path.
 
 - **`/rag` (review-as-agent)**: After completing the main task, add a short “agent review” pass:

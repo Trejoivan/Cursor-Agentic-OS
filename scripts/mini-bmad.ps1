@@ -16,7 +16,7 @@ updates into bmad-projects/<slug>/_mini-bmad-updates/.
 [CmdletBinding()]
 param(
   [Parameter(Position = 0)]
-  [ValidateSet('new', 'open', 'list', 'status', 'checkpoint', 'link', 'unlink', 'log', 'delta', 'brief', 'weekly', 'summarize')]
+  [ValidateSet('new', 'open', 'list', 'status', 'checkpoint', 'link', 'unlink', 'log', 'delta', 'brief', 'weekly', 'summarize', 'bmadprep-sync')]
   [string]$Command = 'list',
 
   [Parameter(Position = 1)]
@@ -74,6 +74,28 @@ function Ensure-Dir {
   if (-not (Test-Path -LiteralPath $Path)) {
     New-Item -ItemType Directory -Path $Path | Out-Null
   }
+}
+
+function Get-BmadPrepRoot {
+  param([Parameter(Mandatory = $true)][string]$RepoRoot)
+  return (Join-Path (Join-Path $RepoRoot '_mini_bmad') 'bmad_prep')
+}
+
+function Get-BmadPrepPending {
+  param([Parameter(Mandatory = $true)][string]$RepoRoot)
+  return (Join-Path (Get-BmadPrepRoot -RepoRoot $RepoRoot) 'pending')
+}
+
+function Get-BmadPrepDone {
+  param([Parameter(Mandatory = $true)][string]$RepoRoot)
+  return (Join-Path (Get-BmadPrepRoot -RepoRoot $RepoRoot) 'done_prep_bmad')
+}
+
+function Ensure-BmadPrepFolders {
+  param([Parameter(Mandatory = $true)][string]$RepoRoot)
+  Ensure-Dir -Path (Get-BmadPrepRoot -RepoRoot $RepoRoot)
+  Ensure-Dir -Path (Get-BmadPrepPending -RepoRoot $RepoRoot)
+  Ensure-Dir -Path (Get-BmadPrepDone -RepoRoot $RepoRoot)
 }
 
 function Read-Json {
@@ -1278,6 +1300,74 @@ switch ($Command) {
     $runId = Split-Path -Leaf $runRoot
     Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad weekly" + $(if ($Sync) { " (sync)" } else { "" })) -Project ("mini:" + $runId) -Tags @('mini-bmad', 'weekly')
     $result
+  }
+
+  'bmadprep-sync' {
+    if ([string]::IsNullOrWhiteSpace($Project)) { throw "Project is required for 'bmadprep-sync' (use -Project)." }
+
+    Ensure-BmadPrepFolders -RepoRoot $repoRoot
+    $pendingDir = Get-BmadPrepPending -RepoRoot $repoRoot
+    $doneDir = Get-BmadPrepDone -RepoRoot $repoRoot
+
+    $files = @(
+      Get-ChildItem -LiteralPath $pendingDir -File |
+        Where-Object {
+          $_.Extension -in @('.md', '.markdown', '.txt') -and
+          $_.Name -ne 'README.md'
+        } |
+        Sort-Object -Property Name
+    )
+
+    if ($files.Count -eq 0) {
+      return [ordered]@{
+        project = $Project
+        pendingDir = $pendingDir.Substring($repoRoot.Length).TrimStart('\', '/')
+        doneDir = $doneDir.Substring($repoRoot.Length).TrimStart('\', '/')
+        syncedCount = 0
+        movedCount = 0
+        note = "No files found in pending."
+      }
+    }
+
+    $projSlug = ConvertTo-Slug -Text $Project
+    $projRoot = Join-Path (Join-Path $repoRoot 'bmad-projects') $projSlug
+    if (-not (Test-Path -LiteralPath $projRoot)) {
+      & (Join-Path $repoRoot 'scripts\\bmad-project.ps1') open $projSlug -NoLaunch | Out-Null
+    }
+
+    $updatesDir = Join-Path $projRoot '_mini-bmad-updates'
+    Ensure-Dir -Path $updatesDir
+
+    $stamp = (Get-Date).ToString('yyyyMMdd-HHmmss')
+    $synced = 0
+    $moved = 0
+    $dests = @()
+
+    foreach ($f in $files) {
+      $base = [IO.Path]::GetFileNameWithoutExtension($f.Name)
+      $destName = ('bmadprep-' + $stamp + '-' + $base + '.md')
+      $destPath = Join-Path $updatesDir $destName
+      Copy-Item -LiteralPath $f.FullName -Destination $destPath -Force
+      $synced += 1
+      $dests += @($destPath.Substring($repoRoot.Length).TrimStart('\', '/'))
+
+      $doneName = ($stamp + '-' + $f.Name)
+      $donePath = Join-Path $doneDir $doneName
+      Move-Item -LiteralPath $f.FullName -Destination $donePath -Force
+      $moved += 1
+    }
+
+    Try-TaskLedgerLog -RepoRoot $repoRoot -What ("mini-bmad bmadprep-sync: " + $projSlug + " (" + $synced + " files)") -Project ('mini:bmadprep') -Tags @('mini-bmad', 'bmadprep', 'sync')
+
+    return [ordered]@{
+      project = $projSlug
+      pendingDir = $pendingDir.Substring($repoRoot.Length).TrimStart('\', '/')
+      doneDir = $doneDir.Substring($repoRoot.Length).TrimStart('\', '/')
+      updatesDir = $updatesDir.Substring($repoRoot.Length).TrimStart('\', '/')
+      syncedCount = $synced
+      movedCount = $moved
+      updatePayloads = $dests
+    }
   }
 }
 

@@ -37,6 +37,8 @@ Using `templates/meeting-prep.md`:
 - Draft a proposed agenda
 - Note key points to raise
 
+Save the prep doc in `AD_HOC/Meetings/prep/` so prep artifacts are separated from canonical meeting records.
+
 ### 6. Present to User
 
 ```

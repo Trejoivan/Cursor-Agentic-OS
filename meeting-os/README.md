@@ -26,9 +26,11 @@ Help me set up meeting-os
 ```
 
 Cursor will walk you through:
-1. Setting up your meeting notes structure
+1. Setting up your meeting notes structure (final records stored in `meeting-os/`)
 2. Connecting with Granola (optional, for automatic transcription)
 3. Creating your first meeting note
+
+Use `AD_HOC/Meetings/` as a scratch space for prep docs, draft agendas, and temporary meeting artifacts.
 
 ## What's Inside
 

@@ -7,8 +7,9 @@ Help the user walk into a meeting prepared by surfacing history, open commitment
 1. **Check `People/`** for each attendee — past meetings, topics, open commitments
 2. **Check `Actions/`** for overdue items involving these people
 3. **Check `Decisions/`** for active decisions relevant to the meeting topic
-4. **Draft an agenda** built from open items, overdue commitments (in both directions), and any topics the user mentioned
-5. **Surface risks** — anything overdue or likely to come up
+4. **Create a prep doc** in `AD_HOC/Meetings/prep/` using `templates/meeting-prep.md`
+5. **Draft an agenda** in `AD_HOC/Meetings/agendas/` (or use `/cag`) built from open items, overdue commitments (in both directions), and any topics the user mentioned
+6. **Surface risks** — anything overdue or likely to come up
 
 ## Rules
 

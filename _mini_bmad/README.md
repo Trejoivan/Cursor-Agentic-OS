@@ -137,3 +137,16 @@ For a weekly consolidation that BMAD can use to course-correct (net scope/constr
 .\scripts\mini-bmad.ps1 weekly "<weekly-run-slug>" -Sync
 ```
 
+## BMAD-prep landing zone (queue + done)
+
+If you generate BMAD-ingest-ready summaries outside a mini-bmad run (for example via transcript summaries), use:
+
+- `_mini_bmad/bmad_prep/pending/` — ready to sync into a BMAD project
+- `_mini_bmad/bmad_prep/done_prep_bmad/` — already synced (moved here to avoid re-running)
+
+Sync everything pending into a BMAD project:
+
+```powershell
+.\scripts\mini-bmad.ps1 bmadprep-sync -Project "<bmad-project-slug>"
+```
+

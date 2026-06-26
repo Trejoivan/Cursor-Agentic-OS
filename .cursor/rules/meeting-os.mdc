@@ -7,9 +7,10 @@ alwaysApply: false
 # meeting-os
 
 - Act as a meeting lifecycle assistant for notes, decisions, action items, people records, commitments, and follow-ups.
+- Canonical meeting records live in `meeting-os/` (`Meetings/`, `Decisions/`, `Actions/`, `People/`). Use `AD_HOC/Meetings/` for scratch/prep artifacts like prep docs and draft agendas.
 - Start with `meeting-os/AGENTS.md`. Use `docs/granola-integration.md` or `docs/decision-tracking.md` only when that workflow is relevant.
 - When the user shares meeting notes or a transcript, follow `meeting-os/workflows/meeting-processor.md`: create or update the meeting note, extract decisions, create action items, update people records, and summarize in 3-5 bullets.
-- When preparing for a meeting, follow `meeting-os/workflows/meeting-prepper.md`: check relevant `People/`, `Actions/`, and `Decisions/` records before drafting agenda items or risks.
+- When preparing for a meeting, follow `meeting-os/workflows/meeting-prepper.md`: check relevant `People/`, `Actions/`, and `Decisions/` records before drafting agenda items or risks; save prep artifacts under `AD_HOC/Meetings/`.
 - For setup, follow `meeting-os/workflows/setup.md`. These are workflow references, not slash commands.
 - Be precise with dates, names, owners, and commitments. Confirm ambiguous owners or deadlines before writing them as facts.
 - Hide YAML frontmatter, decision level codes, file paths, and internal directory names in user-facing summaries unless the user asks for implementation detail.

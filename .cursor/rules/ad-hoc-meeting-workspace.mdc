@@ -1,0 +1,22 @@
+---
+description: AD_HOC meeting workspace conventions (transcripts inbox, summaries, done/archive)
+globs: AD_HOC/workspace/meeting/**
+alwaysApply: false
+---
+
+# AD_HOC workspace meeting process
+
+This workspace is optimized to avoid re-reviewing transcripts and re-running BMAD prep.
+
+## Folder roles
+
+- `AD_HOC/workspace/meeting/transcripts/` — transcript inbox (unreviewed)
+- `AD_HOC/workspace/meeting/transcript-summaries/` — first-pass summaries from transcripts
+- `AD_HOC/workspace/meeting/transcript_done/` — reviewed transcripts (moved out of inbox)
+- `AD_HOC/workspace/meeting/archive-summaries/` — summaries that were used for BMAD prep (archived)
+
+## Default behavior
+
+- When asked to summarize a transcript file from `transcripts/`, write the summary to `transcript-summaries/` and move the transcript to `transcript_done/`.
+- When asked for “BMAD ingest formatting” or BMAD prep output, write it to `archive-summaries/` and move any consumed source summaries there too.
+

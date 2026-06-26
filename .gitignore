@@ -72,6 +72,9 @@ INBOX.md
 # Repo-local caches (private / reproducible)
 .cache/
 
+# ---- apps (private / local experiments) ----
+apps/wedding-planner/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -121,10 +124,21 @@ bmad-projects/*/
 
 _mini_bmad/runs/
 
+# mini-bmad BMAD-prep landing zone (private by default; keep scaffold tracked)
+_mini_bmad/bmad_prep/**
+!_mini_bmad/bmad_prep/
+!_mini_bmad/bmad_prep/README.md
+!_mini_bmad/bmad_prep/pending/
+!_mini_bmad/bmad_prep/pending/README.md
+!_mini_bmad/bmad_prep/done_prep_bmad/
+!_mini_bmad/bmad_prep/done_prep_bmad/README.md
+
 # ---- AD_HOC (private by default; keep scaffold tracked) ----
 AD_HOC/**
 !AD_HOC/
 !AD_HOC/README.md
+!AD_HOC/Meetings/
+!AD_HOC/Meetings/README.md
 !AD_HOC/workspace/
 !AD_HOC/workspace/**/
 !AD_HOC/workspace/README.md
